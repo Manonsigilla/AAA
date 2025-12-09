@@ -323,6 +323,10 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
+.welcome-content {
+    padding-left: 15px;
+}
+
 .welcome-content h2 {
     color: rgba(255, 255, 255, 0.9);
     font-size: 1.2em;
@@ -752,6 +756,10 @@ RESPONSIVE DESIGN
         text-align: center;
     }
     
+    .welcome-content {
+        padding-top: 10px;
+    }
+
     .welcome-content h1 {
         font-size: 2em;
     }
@@ -784,6 +792,10 @@ RESPONSIVE DESIGN
 @media (max-width: 480px) {
     .top-left .page-title {
         font-size: 1.2em;
+    }
+
+    .welcome-content {
+        padding-top: 5px;
     }
     
     .welcome-content h1 {

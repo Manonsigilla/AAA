@@ -6,7 +6,7 @@
 function updateClock() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now. getMinutes()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     
     const clockElement = document.getElementById('liveClock');
@@ -28,7 +28,7 @@ function animateProgressBars() {
         const width = ramBar.getAttribute('data-width');
         if (width) {
             setTimeout(() => {
-                ramBar. style.width = width + '%';
+                ramBar.style.width = width + '%';
             }, 100);
         }
     }
@@ -53,7 +53,7 @@ if (refreshBtn) {
         // Add rotation animation
         const icon = this.querySelector('.refresh-icon');
         if (icon) {
-            icon. style.transform = 'rotate(360deg)';
+            icon.style.transform = 'rotate(360deg)';
             icon.style.transition = 'transform 0.5s ease';
         }
         
@@ -66,20 +66,20 @@ if (refreshBtn) {
 
 
 // === SMOOTH SCROLL NAVIGATION ===
-const navLinks = document.querySelectorAll('. nav-link');
+const navLinks = document.querySelectorAll('.nav-link');
 
 navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         
         // Remove active class from all links
-        navLinks.forEach(l => l. classList.remove('active'));
+        navLinks.forEach(l => l.classList.remove('active'));
         
         // Add active class to clicked link
         this.classList.add('active');
         
         // Get target section
-        const targetId = this. getAttribute('href');
+        const targetId = this.getAttribute('href');
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
@@ -115,7 +115,7 @@ if (mobileMenuToggle && sidebar) {
 
 
 // === HIGHLIGHT ACTIVE SECTION ON SCROLL ===
-const sections = document.querySelectorAll('. section');
+const sections = document.querySelectorAll('.section');
 
 function highlightActiveSection() {
     let current = 'overview'; // Default to overview
@@ -126,7 +126,7 @@ function highlightActiveSection() {
         
         // Check if section is in viewport
         if (window.pageYOffset >= (sectionTop - 200)) {
-            current = section. getAttribute('id');
+            current = section.getAttribute('id');
         }
     });
     
@@ -165,7 +165,7 @@ document.addEventListener('click', function(event) {
             
             if (!isClickInsideSidebar && !isClickOnToggle && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
-                menuToggle. classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         }
     }
