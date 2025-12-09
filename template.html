@@ -1,243 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Monitoring Dashboard - Challenge Triple A</title>
+    <title>Challenge Triple A - System Monitor</title>
     <link rel="stylesheet" href="template.css">
 </head>
 <body>
+    <!-- Mobile menu toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" title="Toggle mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>🖥️ MONITOR</h2>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">📊</div>
+            <h2>MONITOR</h2>
         </div>
         
-        <nav class="nav-menu">
-            <div class="nav-section">
-                <a href="#" class="nav-item active">
-                    <span class="icon">📊</span>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="icon">📋</span>
-                    <span>Tables</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="icon">💳</span>
-                    <span>Billing</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="icon">🔧</span>
-                    <span>RTL</span>
-                </a>
-            </div>
-            
-            <div class="nav-divider">ACCOUNT PAGES</div>
-            
-            <div class="nav-section">
-                <a href="#" class="nav-item">
-                    <span class="icon">👤</span>
-                    <span>Profile</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="icon">🔐</span>
-                    <span>Sign In</span>
-                </a>
-                <a href="#" class="nav-item">
-                    <span class="icon">📝</span>
-                    <span>Sign Up</span>
-                </a>
-            </div>
-        </nav>
-    </aside>
+        <ul class="nav-links">
+            <li><a href="#overview" class="nav-link active">
+                <span class="icon">🏠</span>
+                <span class="text">Overview</span>
+            </a></li>
+            <li><a href="#system-section" class="nav-link">
+                <span class="icon">💻</span>
+                <span class="text">System Info</span>
+            </a></li>
+            <li><a href="#cpu-section" class="nav-link">
+                <span class="icon">⚙️</span>
+                <span class="text">CPU</span>
+            </a></li>
+            <li><a href="#memory-section" class="nav-link">
+                <span class="icon">🧠</span>
+                <span class="text">Memory</span>
+            </a></li>
+            <li><a href="#processes-section" class="nav-link">
+                <span class="icon">📈</span>
+                <span class="text">Processes</span>
+            </a></li>
+            <li><a href="#files-section" class="nav-link">
+                <span class="icon">📁</span>
+                <span class="text">Files</span>
+            </a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <p>Challenge AAA</p>
+            <p class="version">v1.0</p>
+        </div>
+    </nav>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <!-- Header with title and timestamp (CONSIGNE) -->
-        <header class="top-header">
-            <div class="breadcrumb">
-                <span class="breadcrumb-item">Pages / Dashboard</span>
-                <h1>System Monitoring Dashboard</h1>
-                <p class="timestamp">Last update: {timestamp}</p>
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-left">
+                <h1 class="page-title">🖥️ System Monitoring Dashboard</h1>
+                <p class="last-update">Last update: {timestamp}</p>
             </div>
-            <div class="header-actions">
-                <input type="text" placeholder="Type here..." class="search-input">
-                <button class="btn-icon">👤 Sign In</button>
-                <button class="btn-icon">⚙️</button>
-                <button class="btn-icon">🔔</button>
+            <div class="top-right">
+                <div class="live-clock" id="liveClock">00:00:00</div>
+                <button class="refresh-btn" id="refreshBtn" title="Refresh dashboard">
+                    <span class="refresh-icon">🔄</span>
+                    <span class="refresh-text">Refresh</span>
+                </button>
             </div>
         </header>
 
-        <!-- Main container with all sections (CONSIGNE) -->
-        <main>
-            <!-- Welcome Card (decorative, not required by consignes) -->
-            <div class="welcome-banner card-gradient">
-                <div class="welcome-content">
-                    <p class="welcome-subtitle">Welcome back,</p>
-                    <h2 class="welcome-title">{hostname}</h2>
-                    <p class="welcome-text">System monitoring dashboard</p>
-                    <p class="welcome-text">All stats updated in real-time</p>
-                </div>
-                <div class="welcome-image">
-                    <div class="hologram-effect">💻</div>
-                </div>
+        <!-- User Welcome Banner -->
+        <div class="welcome-banner" id="overview">
+            <div class="welcome-content">
+                <h2>Welcome back,</h2>
+                <h1>Manon</h1>
+                <p>System monitoring dashboard</p>
+                <p class="subtitle">All stats updated in real-time</p>
             </div>
+            <div class="welcome-illustration">
+                💻
+            </div>
+        </div>
 
-            <!-- SECTION 1: Système (CONSIGNE) -->
-            <section class="card section-system">
-                <h2>💻 System Information</h2>
+        <!-- Dashboard Content -->
+        <div class="dashboard">
+            <!-- System Information Section -->
+            <section id="system-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">💻</span>
+                    System Information
+                </h2>
                 <div class="info-grid">
                     <div class="info-item">
-                        <span class="label">Hostname:</span>
-                        <span class="value">{hostname}</span>
+                        <span class="info-label">Hostname:</span>
+                        <span class="info-value">{hostname}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Operating System:</span>
-                        <span class="value">{os_name}</span>
+                        <span class="info-label">Operating System:</span>
+                        <span class="info-value">{os_name}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Boot Time:</span>
-                        <span class="value">{boot_time}</span>
+                        <span class="info-label">Boot Time:</span>
+                        <span class="info-value">{boot_time}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Uptime:</span>
-                        <span class="value">{uptime}</span>
+                        <span class="info-label">Uptime:</span>
+                        <span class="info-value">{uptime}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Connected Users:</span>
-                        <span class="value">{user_count}</span>
+                        <span class="info-label">Connected Users:</span>
+                        <span class="info-value">{user_count}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">IP Address:</span>
+                        <span class="info-value">{ip_address}</span>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 2: CPU (CONSIGNE) -->
-            <section class="card section-cpu">
-                <h2>⚙️ CPU Information</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">CPU Cores:</span>
-                        <span class="value">{cpu_cores}</span>
+            <!-- CPU Section -->
+            <section id="cpu-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">⚙️</span>
+                    CPU Information
+                </h2>
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-header">CPU Cores</div>
+                        <div class="stat-value">{cpu_cores}</div>
+                        <div class="stat-footer">Logical Cores</div>
                     </div>
-                    <div class="info-item">
-                        <span class="label">CPU Frequency:</span>
-                        <span class="value">{cpu_freq} MHz</span>
+                    <div class="stat-card">
+                        <div class="stat-header">CPU Frequency</div>
+                        <div class="stat-value">{cpu_freq} <span class="unit">MHz</span></div>
+                        <div class="stat-footer">Current Speed</div>
                     </div>
-                    <div class="info-item">
-                        <span class="label">CPU Usage:</span>
-                        <span class="value">{cpu_percent}%</span>
-                    </div>
-                </div>
-                <!-- Gauge circulaire pour visualisation -->
-                <div class="gauge-container">
-                    <svg class="gauge" viewBox="0 0 200 200">
-                        <circle class="gauge-bg" cx="100" cy="100" r="80"></circle>
-                        <circle class="gauge-fill" cx="100" cy="100" r="80" 
-                                data-cpu-percent="{cpu_percent}"></circle>
-                    </svg>
-                    <div class="gauge-value">
-                        <span class="gauge-number">{cpu_percent}%</span>
-                        <span class="gauge-label">CPU Load</span>
+                    <div class="stat-card">
+                        <div class="stat-header">CPU Usage</div>
+                        <div class="stat-value">{cpu_percent}%</div>
+                        <div class="stat-footer">Current Load</div>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 3: Mémoire (CONSIGNE) -->
-            <section class="card section-memory">
-                <h2>🧠 Memory Information</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">Total RAM: </span>
-                        <span class="value">{ram_total} GB</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Used RAM:</span>
-                        <span class="value">{ram_used} GB</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">RAM Usage:</span>
-                        <span class="value">{ram_percent}%</span>
-                    </div>
-                </div>
-                <!-- Barre de progression visuelle (CONSIGNE EXPLICITE) -->
-                <div class="progress-bar-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill ram-percent-{ram_percent}">
-                            <span class="progress-text">{ram_percent}%</span>
+            <!-- Memory Section -->
+            <section id="memory-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">🧠</span>
+                    Memory Information
+                </h2>
+                <div class="memory-container">
+                    <div class="memory-stats">
+                        <div class="memory-row">
+                            <span class="mem-label">Total RAM:</span>
+                            <span class="mem-value">{ram_total} GB</span>
+                        </div>
+                        <div class="memory-row">
+                            <span class="mem-label">Used RAM:</span>
+                            <span class="mem-value">{ram_used} GB</span>
+                        </div>
+                        <div class="memory-row">
+                            <span class="mem-label">RAM Usage:</span>
+                            <span class="mem-value">{ram_percent}%</span>
                         </div>
                     </div>
-                    <div class="progress-labels">
-                        <span>0%</span>
-                        <span>50%</span>
-                        <span>100%</span>
+                    <div class="progress-wrapper">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" data-width="{ram_percent}"></div>
+                        </div>
+                        <p class="progress-label">{ram_percent}% Used</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SECTION 4: Réseau (CONSIGNE) -->
-            <section class="card section-network">
-                <h2>🌐 Network Information</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="label">Primary IP Address:</span>
-                        <span class="value">{ip_address}</span>
-                    </div>
+            <!-- Processes Section -->
+            <section id="processes-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">📈</span>
+                    Top 3 Processes
+                </h2>
+                <div class="table-wrapper">
+                    <table class="process-table">
+                        <thead>
+                            <tr>
+                                <th>Process Name</th>
+                                <th>CPU %</th>
+                                <th>Memory %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+{top_processes}
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
-            <!-- SECTION 5: Processus (CONSIGNE) -->
-            <section class="card section-processes">
-                <h2>📊 Top 3 Processes</h2>
-                <table class="process-table">
-                    <thead>
-                        <tr>
-                            <th>Process Name</th>
-                            <th>CPU %</th>
-                            <th>Memory %</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {top_processes}
-                    </tbody>
-                </table>
-            </section>
+            <!-- Files Section -->
+            <section id="files-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">📁</span>
+                    File Statistics
+                </h2>
+                <p class="analyzed-folder">Analyzed folder: <code>{analyzed_folder}</code></p>
+                
+                <div class="files-grid">
+                    <div class="file-card">
+                        <div class="file-icon">📄</div>
+                        <div class="file-details">
+                            <h4>. txt files</h4>
+                            <p class="file-count">{txt_count} files</p>
+                            <div class="file-bar">
+                                <div class="file-bar-fill" data-width="{txt_percent}"></div>
+                            </div>
+                            <p class="file-percent">{txt_percent}%</p>
+                        </div>
+                    </div>
 
-            <!-- SECTION 6: Fichiers (CONSIGNE) -->
-            <section class="card section-files">
-                <h2>📁 File Statistics</h2>
-                <p class="info-subtitle">Analyzed folder: {analyzed_folder}</p>
-                <div class="file-stats">
-                    <div class="file-type">
-                        <span class="file-label">.txt files: </span>
-                        <span class="file-count">{txt_count} ({txt_percent}%)</span>
+                    <div class="file-card">
+                        <div class="file-icon">🐍</div>
+                        <div class="file-details">
+                            <h4>.py files</h4>
+                            <p class="file-count">{py_count} files</p>
+                            <div class="file-bar">
+                                <div class="file-bar-fill" data-width="{py_percent}"></div>
+                            </div>
+                            <p class="file-percent">{py_percent}%</p>
+                        </div>
                     </div>
-                    <div class="file-type">
-                        <span class="file-label">.py files:</span>
-                        <span class="file-count">{py_count} ({py_percent}%)</span>
+
+                    <div class="file-card">
+                        <div class="file-icon">📕</div>
+                        <div class="file-details">
+                            <h4>.pdf files</h4>
+                            <p class="file-count">{pdf_count} files</p>
+                            <div class="file-bar">
+                                <div class="file-bar-fill" data-width="{pdf_percent}"></div>
+                            </div>
+                            <p class="file-percent">{pdf_percent}%</p>
+                        </div>
                     </div>
-                    <div class="file-type">
-                        <span class="file-label">.pdf files:</span>
-                        <span class="file-count">{pdf_count} ({pdf_percent}%)</span>
-                    </div>
-                    <div class="file-type">
-                        <span class="file-label">. jpg files:</span>
-                        <span class="file-count">{jpg_count} ({jpg_percent}%)</span>
-                    </div>
-                    <div class="file-type total">
-                        <span class="file-label">Total files:</span>
-                        <span class="file-count">{total_files}</span>
+
+                    <div class="file-card">
+                        <div class="file-icon">🖼️</div>
+                        <div class="file-details">
+                            <h4>.jpg files</h4>
+                            <p class="file-count">{jpg_count} files</p>
+                            <div class="file-bar">
+                                <div class="file-bar-fill" data-width="{jpg_percent}"></div>
+                            </div>
+                            <p class="file-percent">{jpg_percent}%</p>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
 
-        <!-- Footer (CONSIGNE) -->
-        <footer>
-            <p>© 2025 Generated by Challenge Triple A Monitoring System</p>
-            <div class="footer-links">
-                <p>Group Members:  [Your Names Here]</p>
-            </div>
-        </footer>
-    </div>
+                <div class="total-files-banner">
+                    <strong>Total analyzed files: </strong> {total_files}
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- JavaScript externe -->
+    <script src="dashboard.js"></script>
 </body>
 </html>
