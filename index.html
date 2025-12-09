@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitoring Dashboard - Challenge Triple A</title>
+    <link rel="stylesheet" href="/template.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>🖥️ MONITOR</h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <div class="nav-section">
+                <a href="#" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span>Tables</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">💳</span>
+                    <span>Billing</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🔧</span>
+                    <span>RTL</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider">ACCOUNT PAGES</div>
+            
+            <div class="nav-section">
+                <a href="#" class="nav-item">
+                    <span class="icon">👤</span>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🔐</span>
+                    <span>Sign In</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📝</span>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header with title and timestamp (CONSIGNE) -->
+        <header class="top-header">
+            <div class="breadcrumb">
+                <span class="breadcrumb-item">Pages / Dashboard</span>
+                <h1>System Monitoring Dashboard</h1>
+                <p class="timestamp">Last update: 2025-12-09 12:31:36</p>
+            </div>
+            <div class="header-actions">
+                <input type="text" placeholder="Type here..." class="search-input">
+                <button class="btn-icon">👤 Sign In</button>
+                <button class="btn-icon">⚙️</button>
+                <button class="btn-icon">🔔</button>
+            </div>
+        </header>
+
+        <!-- Main container with all sections (CONSIGNE) -->
+        <main>
+            <!-- Welcome Card (decorative, not required by consignes) -->
+            <div class="welcome-banner card-gradient">
+                <div class="welcome-content">
+                    <p class="welcome-subtitle">Welcome back,</p>
+                    <h2 class="welcome-title">Manon</h2>
+                    <p class="welcome-text">System monitoring dashboard</p>
+                    <p class="welcome-text">All stats updated in real-time</p>
+                </div>
+                <div class="welcome-image">
+                    <div class="hologram-effect">💻</div>
+                </div>
+            </div>
+
+            <!-- SECTION 1: Système (CONSIGNE) -->
+            <section class="card section-system">
+                <h2>💻 System Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Hostname:</span>
+                        <span class="value">Manon</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Operating System:</span>
+                        <span class="value">Windows 11</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Boot Time:</span>
+                        <span class="value">2025-12-05 10:06:47</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Uptime:</span>
+                        <span class="value">98 hours, 24 minutes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Connected Users:</span>
+                        <span class="value">1</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: CPU (CONSIGNE) -->
+            <section class="card section-cpu">
+                <h2>⚙️ CPU Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">CPU Cores:</span>
+                        <span class="value">12</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">CPU Frequency:</span>
+                        <span class="value">1300.0 MHz</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">CPU Usage:</span>
+                        <span class="value">18.7%</span>
+                    </div>
+                </div>
+                <!-- Gauge circulaire pour visualisation -->
+                <div class="gauge-container">
+                    <svg class="gauge" viewBox="0 0 200 200">
+                        <circle class="gauge-bg" cx="100" cy="100" r="80"></circle>
+                        <circle class="gauge-fill" cx="100" cy="100" r="80" 
+                                data-cpu-percent="18.7"></circle>
+                    </svg>
+                    <div class="gauge-value">
+                        <span class="gauge-number">18.7%</span>
+                        <span class="gauge-label">CPU Load</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Mémoire (CONSIGNE) -->
+            <section class="card section-memory">
+                <h2>🧠 Memory Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Total RAM: </span>
+                        <span class="value">7.71 GB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Used RAM:</span>
+                        <span class="value">7.01 GB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">RAM Usage:</span>
+                        <span class="value">91.0%</span>
+                    </div>
+                </div>
+                <!-- Barre de progression visuelle (CONSIGNE EXPLICITE) -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill ram-percent-91.0">
+                            <span class="progress-text">91.0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Réseau (CONSIGNE) -->
+            <section class="card section-network">
+                <h2>🌐 Network Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Primary IP Address:</span>
+                        <span class="value">10.10.6.65</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Processus (CONSIGNE) -->
+            <section class="card section-processes">
+                <h2>📊 Top 3 Processes</h2>
+                <table class="process-table">
+                    <thead>
+                        <tr>
+                            <th>Process Name</th>
+                            <th>CPU %</th>
+                            <th>Memory %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                <tr>
+                            <td>System Idle Process</td>
+                            <td>966.7%</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Code.exe</td>
+                            <td>42.1%</td>
+                            <td>3.3%</td>
+                        </tr>
+                        <tr>
+                            <td>python.exe</td>
+                            <td>39.2%</td>
+                            <td>0.3%</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 6: Fichiers (CONSIGNE) -->
+            <section class="card section-files">
+                <h2>📁 File Statistics</h2>
+                <p class="info-subtitle">Analyzed folder: C:\Users\Manon\Documents</p>
+                <div class="file-stats">
+                    <div class="file-type">
+                        <span class="file-label">.txt files: </span>
+                        <span class="file-count">10 (50.0%)</span>
+                    </div>
+                    <div class="file-type">
+                        <span class="file-label">.py files:</span>
+                        <span class="file-count">5 (25.0%)</span>
+                    </div>
+                    <div class="file-type">
+                        <span class="file-label">.pdf files:</span>
+                        <span class="file-count">3 (15.0%)</span>
+                    </div>
+                    <div class="file-type">
+                        <span class="file-label">. jpg files:</span>
+                        <span class="file-count">2 (10.0%)</span>
+                    </div>
+                    <div class="file-type total">
+                        <span class="file-label">Total files:</span>
+                        <span class="file-count">20</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer (CONSIGNE) -->
+        <footer>
+            <p>© 2025 Generated by Challenge Triple A Monitoring System</p>
+            <div class="footer-links">
+                <p>Group Members:  [Your Names Here]</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
