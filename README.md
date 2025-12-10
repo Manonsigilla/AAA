@@ -189,13 +189,13 @@ Dans `template.css`, modifiez les variables CSS :
 
 ## 👥 Auteurs
 
-- **[Nom Membre 1]** - [GitHub](https://github.com/membre1)
-- **[Nom Membre 2]** - [GitHub](https://github.com/membre2)
-- **[Nom Membre 3]** - [GitHub](https://github.com/membre3)
+- **[Manon Sigaud]** - [GitHub](https://github.com/Manonsigilla)
+- **[Alex Taylor]** - [GitHub](https://github.com/ALex-taYlor-os)
+- **[Angie Valencia]** - [GitHub](https://github.com/angie-valencia)
 
 ## 🎓 Contexte
 
-Projet réalisé dans le cadre de la formation **[Nom de votre école/formation]**.
+Projet réalisé dans le cadre de la formation **[La Plateforme Marseille - Bachelor IT]**.
 
 **Date** : Décembre 2025
 

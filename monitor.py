@@ -90,7 +90,7 @@ def get_memory_info():
     # Convert bytes to GB
     ram_total = round(memory.total / (1024 ** 3), 2)
     ram_used = round(memory.used / (1024 ** 3), 2)
-    ram_percent = round(memory. percent, 1)
+    ram_percent = round(memory.percent, 1)
     
     return {
         'ram_total': str(ram_total),
@@ -120,15 +120,15 @@ def get_network_info():
 
 def get_top_processes():
     """
-    Get top 3 processes by CPU and memory usage
-    Returns:  dict with HTML table rows for top processes
+    Get all processes sorted by CPU and memory usage
+    Returns: dict with HTML table rows for top 3 and all processes
     """
     print("   ⏳ Measuring CPU usage (this takes a moment)...")
     
     # First call to initialize CPU measurement
     for proc in psutil.process_iter():
         try:
-            proc. cpu_percent()
+            proc.cpu_percent()
         except:
             pass
     
@@ -155,13 +155,22 @@ def get_top_processes():
     # Sort processes by combined CPU + memory usage
     processes.sort(key=lambda x: x['cpu'] + x['memory'], reverse=True)
     
-    # Get top 3 processes
-    top_3 = processes[:3]
+    # Generate HTML for TOP 3
+    top_3_rows = ""
+    for i, proc in enumerate(processes[:3], start=1):
+        top_3_rows += f"""                        <tr>
+                            <td class="rank-cell">#{i}</td>
+                            <td>{proc['name']}</td>
+                            <td>{round(proc['cpu'], 1)}%</td>
+                            <td>{round(proc['memory'], 1)}%</td>
+                        </tr>
+"""
     
-    # Generate HTML table rows
-    table_rows = ""
-    for proc in top_3:
-        table_rows += f"""                        <tr>
+    # Generate HTML for ALL remaining processes (after top 3, with rank numbers)
+    all_other_rows = ""
+    for i, proc in enumerate(processes[3:], start=4):  # Skip the first 3
+        all_other_rows += f"""                        <tr>
+                            <td class="rank-cell">#{i}</td>
                             <td>{proc['name']}</td>
                             <td>{round(proc['cpu'], 1)}%</td>
                             <td>{round(proc['memory'], 1)}%</td>
@@ -169,7 +178,9 @@ def get_top_processes():
 """
     
     return {
-        'top_processes': table_rows
+        'top_processes': top_3_rows,
+        'all_processes': all_other_rows,
+        'total_processes': str(len(processes))
     }
 
 def analyze_files(directory):
@@ -180,7 +191,7 @@ def analyze_files(directory):
     Returns:  dict with file counts and percentages
     """
     # Define file extensions to analyze
-    extensions = {'. txt':  0, '.py': 0, '.pdf': 0, '.jpg': 0}
+    extensions = {'.txt':  0, '.py': 0, '.pdf': 0, '.jpg': 0}
     
     # Convert to Path object
     dir_path = Path(directory)
@@ -190,7 +201,7 @@ def analyze_files(directory):
         print(f"   ⚠️  Directory not found: {directory}")
         dir_path = Path(".")
     
-    print(f"   📂 Scanning:  {dir_path. absolute()}")
+    print(f"   📂 Scanning:  {dir_path.absolute()}")
     
     # Count files by extension
     file_count = 0
@@ -227,7 +238,7 @@ def analyze_files(directory):
     jpg_percent = round((extensions['.jpg'] / total_files) * 100, 1)
     
     return {
-        'analyzed_folder': str(dir_path. absolute()),
+        'analyzed_folder': str(dir_path.absolute()),
         'txt_count': str(extensions['.txt']),
         'txt_percent': str(txt_percent),
         'py_count': str(extensions['.py']),
