@@ -189,9 +189,9 @@ Dans `template.css`, modifiez les variables CSS :
 
 ## 👥 Auteurs
 
-- **[Manon Sigaud]** - [GitHub]([https://github.com/membre1](https://github.com/Manonsigilla))
-- **[Alex Taylor]** - [GitHub][(https://github.com/membre2)](https://github.com/ALex-taYlor-os)
-- **[Angie Valencia]** - [GitHub][(https://github.com/membre3)](https://github.com/angie-valencia)
+- **[Manon Sigaud]** - [GitHub](https://github.com/Manonsigilla)
+- **[Alex Taylor]** - [GitHub](https://github.com/ALex-taYlor-os)
+- **[Angie Valencia]** - [GitHub](https://github.com/angie-valencia)
 
 ## 🎓 Contexte
 
