@@ -198,11 +198,15 @@
                 <h2 class="section-title">
                     <span class="title-icon">📈</span>
                     Top 3 Processes
+                    <span class="process-count">({{ total_processes }} total)</span>
                 </h2>
+                
                 <div class="table-wrapper">
+                    <!-- TOP 3 - Tableau principal (comme avant) -->
                     <table class="process-table">
                         <thead>
                             <tr>
+                                <th class="rank-header">#</th>
                                 <th>Process Name</th>
                                 <th>CPU %</th>
                                 <th>Memory %</th>
@@ -212,7 +216,43 @@
                             {{ top_processes }}
                         </tbody>
                     </table>
+                    
+                    <!-- Aperçu flouté (preview) -->
+                    <div class="process-preview" id="processPreview">
+                        <table class="process-table preview-table">
+                            <tbody>
+                                {{ all_processes }}
+                            </tbody>
+                        </table>
+                        <div class="blur-overlay"></div>
+                    </div>
+                    
+                    <!-- Bouton Voir Plus -->
+                    <div class="show-more-container" id="showMoreContainer">
+                        <button class="show-more-btn" id="showMoreBtn">
+                            <span class="icon">👁️</span>
+                            <span class="text">Voir plus</span>
+                            <span class="icon">➕</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Container pour tous les processus (caché par défaut) -->
+                    <div id="allProcessesContainer">
+                        <!-- Tous les autres processus -->
+                        <table class="process-table">
+                            <tbody>
+                                {{ all_processes }}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                
+                <!-- Bouton Voir Moins -->
+                <button class="show-less-btn" id="showLessBtn">
+                    <span class="icon">👁️</span>
+                    <span class="text">Voir moins</span>
+                    <span class="icon">➖</span>
+                </button>
             </section>
 
             <!-- Files Section -->
@@ -227,7 +267,7 @@
                     <div class="file-card">
                         <div class="file-icon">📄</div>
                         <div class="file-details">
-                            <h4>. txt files</h4>
+                            <h4>.txt files</h4>
                             <p class="file-count">{{ txt_count }} files</p>
                             <div class="file-bar">
                                 <div class="file-bar-fill" data-width="{{ txt_percent }}"></div>

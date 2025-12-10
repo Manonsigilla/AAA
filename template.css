@@ -595,12 +595,13 @@ body {
 
 .process-table {
     width: 100%;
-    border-collapse:  separate;
+    border-collapse: separate;
     border-spacing: 0;
+    table-layout: fixed;
 }
 
 .process-table thead {
-    background: var(--bg-secondary);
+    background:  var(--bg-secondary);
 }
 
 .process-table th {
@@ -619,12 +620,209 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Rank column styling */
+.rank-header {
+    width: 60px;
+    text-align: center ! important;
+}
+
+.rank-cell {
+    width: 60px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+/* Define fixed widths for each column */
+.process-table th:nth-child(1),
+.process-table td:nth-child(1) {
+    width: 60px; /* Rank # */
+}
+
+.process-table th:nth-child(2),
+.process-table td:nth-child(2) {
+    width: auto; /* Process Name - takes remaining space */
+}
+
+.process-table th:nth-child(3),
+.process-table td:nth-child(3) {
+    width: 120px; /* CPU % */
+    text-align: right;
+}
+
+.process-table th:nth-child(4),
+.process-table td:nth-child(4) {
+    width: 120px; /* Memory % */
+    text-align:  right;
+}
+
 .process-table tbody tr {
     transition: all 0.3s ease;
 }
 
 .process-table tbody tr:hover {
     background: var(--bg-secondary);
+}
+
+.process-table tbody tr:hover .rank-cell {
+    color: var(--primary-light);
+}
+
+/* === Process Preview with Blur === */
+.process-preview {
+    position: relative;
+    max-height: 150px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.process-preview .preview-table {
+    opacity: 0.6;
+}
+
+.process-preview .preview-table thead {
+    display: none;
+}
+
+.blur-overlay {
+    position: absolute;
+    bottom: 0;
+    left:  0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(26, 31, 58, 0.5) 40%,
+        rgba(26, 31, 58, 0.95) 100%
+    );
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* === Show More/Less Buttons === */
+.show-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.show-more-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.show-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.show-more-btn .icon {
+    font-size:  1.2em;
+}
+
+/* Bouton Voir Moins - FIXED position */
+.show-less-btn {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform:  translateX(-50%);
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+.show-less-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+}
+
+.show-less-btn .icon {
+    font-size: 1.2em;
+}
+
+/* === Process Count Badge === */
+.process-count {
+    font-size: 0.7em;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: var(--spacing-sm);
+}
+
+/* === All Processes Container === */
+#allProcessesContainer {
+    display: none; /* Hidden by default */
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform:  translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .show-more-btn,
+    .show-less-btn {
+        font-size: 0.85em;
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    .show-less-btn {
+        top: 90px;
+    }
+        
+    .process-preview {
+        max-height: 120px;
+    }
+
+    .blur-overlay {
+        height: 100px;
+    }
 }
 
 /* === Files Grid === */
@@ -760,7 +958,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2. 5em;
+    font-size: 2.5em;
 }
 
 .network-details {

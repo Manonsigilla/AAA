@@ -201,6 +201,55 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightActiveSection();
 });
 
+// === SHOW MORE/LESS PROCESSES ===
+const showMoreBtn = document.getElementById('showMoreBtn');
+const showMoreContainer = document.getElementById('showMoreContainer');
+const processPreview = document.getElementById('processPreview');
+const allProcessesContainer = document.getElementById('allProcessesContainer');
+const showLessBtn = document.getElementById('showLessBtn');
+
+if (showMoreBtn && processPreview && allProcessesContainer && showLessBtn) {
+    // Show all processes
+    showMoreBtn.addEventListener('click', function() {
+        // Hide preview with blur
+        processPreview.style.display = 'none';
+        
+        // Hide "Show More" button
+        showMoreContainer.style.display = 'none';
+        
+        // Show all processes container
+        allProcessesContainer.style.display = 'block';
+        
+        // Show "Voir moins" button (IMPORTANT: use flex!)
+        showLessBtn.style.display = 'flex';
+        
+        console.log('📈 All processes revealed');
+    });
+    
+    // Hide all processes
+    showLessBtn.addEventListener('click', function() {
+        // Show preview with blur
+        processPreview.style.display = 'block';
+        
+        // Show "Show More" button
+        showMoreContainer.style.display = 'flex';
+        
+        // Hide all processes container
+        allProcessesContainer.style.display = 'none';
+        
+        // Hide "Voir moins" button
+        this.style.display = 'none';
+        
+        // Scroll back to processes section
+        const processSection = document.getElementById('processes-section');
+        if (processSection) {
+            processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        console.log('📉 Processes collapsed');
+    });
+}
+
 // === CHRISTMAS THEME TOGGLE ===
 const themeToggle = document.getElementById('themeToggle');
 const snowflakes = document.getElementById('snowflakes');
