@@ -28,7 +28,7 @@
             </a></li>
             <li><a href="#system-section" class="nav-link">
                 <span class="icon">💻</span>
-                <span class="text">System Info</span>
+                <span class="text">System</span>
             </a></li>
             <li><a href="#cpu-section" class="nav-link">
                 <span class="icon">⚙️</span>
@@ -37,6 +37,10 @@
             <li><a href="#memory-section" class="nav-link">
                 <span class="icon">🧠</span>
                 <span class="text">Memory</span>
+            </a></li>
+            <li><a href="#network-section" class="nav-link">
+                <span class="icon">🌐</span>
+                <span class="text">Network</span>
             </a></li>
             <li><a href="#processes-section" class="nav-link">
                 <span class="icon">📈</span>
@@ -60,7 +64,7 @@
         <header class="top-bar">
             <div class="top-left">
                 <h1 class="page-title">🖥️ System Monitoring Dashboard</h1>
-                <p class="last-update">Last update: {timestamp}</p>
+                <p class="last-update">Last update: {{ timestamp }}</p>
             </div>
             <div class="top-right">
                 <div class="live-clock" id="liveClock">00:00:00</div>
@@ -75,7 +79,7 @@
         <div class="welcome-banner" id="overview">
             <div class="welcome-content">
                 <h2>Welcome back,</h2>
-                <h1>Manon</h1>
+                <h1>{{ hostname }}</h1>
                 <p>System monitoring dashboard</p>
                 <p class="subtitle">All stats updated in real-time</p>
             </div>
@@ -86,7 +90,7 @@
 
         <!-- Dashboard Content -->
         <div class="dashboard">
-            <!-- System Information Section -->
+            <!-- System Section -->
             <section id="system-section" class="section">
                 <h2 class="section-title">
                     <span class="title-icon">💻</span>
@@ -95,27 +99,23 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="info-label">Hostname:</span>
-                        <span class="info-value">{hostname}</span>
+                        <span class="info-value">{{ hostname }}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Operating System:</span>
-                        <span class="info-value">{os_name}</span>
+                        <span class="info-value">{{ os_name }}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Boot Time:</span>
-                        <span class="info-value">{boot_time}</span>
+                        <span class="info-value">{{ boot_time }}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Uptime:</span>
-                        <span class="info-value">{uptime}</span>
+                        <span class="info-value">{{ uptime }}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Connected Users:</span>
-                        <span class="info-value">{user_count}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">IP Address:</span>
-                        <span class="info-value">{ip_address}</span>
+                        <span class="info-value">{{ user_count }}</span>
                     </div>
                 </div>
             </section>
@@ -129,17 +129,17 @@
                 <div class="stats-row">
                     <div class="stat-card">
                         <div class="stat-header">CPU Cores</div>
-                        <div class="stat-value">{cpu_cores}</div>
+                        <div class="stat-value">{{ cpu_cores }}</div>
                         <div class="stat-footer">Logical Cores</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-header">CPU Frequency</div>
-                        <div class="stat-value">{cpu_freq} <span class="unit">MHz</span></div>
+                        <div class="stat-value">{{ cpu_freq }} <span class="unit">MHz</span></div>
                         <div class="stat-footer">Current Speed</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-header">CPU Usage</div>
-                        <div class="stat-value">{cpu_percent}%</div>
+                        <div class="stat-value">{{ cpu_percent }}%</div>
                         <div class="stat-footer">Current Load</div>
                     </div>
                 </div>
@@ -155,22 +155,39 @@
                     <div class="memory-stats">
                         <div class="memory-row">
                             <span class="mem-label">Total RAM:</span>
-                            <span class="mem-value">{ram_total} GB</span>
+                            <span class="mem-value">{{ ram_total }} GB</span>
                         </div>
                         <div class="memory-row">
                             <span class="mem-label">Used RAM:</span>
-                            <span class="mem-value">{ram_used} GB</span>
+                            <span class="mem-value">{{ ram_used }} GB</span>
                         </div>
                         <div class="memory-row">
                             <span class="mem-label">RAM Usage:</span>
-                            <span class="mem-value">{ram_percent}%</span>
+                            <span class="mem-value">{{ ram_percent }}%</span>
                         </div>
                     </div>
                     <div class="progress-wrapper">
                         <div class="progress-bar-container">
-                            <div class="progress-bar-fill" data-width="{ram_percent}"></div>
+                            <div class="progress-bar-fill" data-width="{{ ram_percent }}"></div>
                         </div>
-                        <p class="progress-label">{ram_percent}% Used</p>
+                        <p class="progress-label">{{ ram_percent }}% Used</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Network Section -->
+            <section id="network-section" class="section">
+                <h2 class="section-title">
+                    <span class="title-icon">🌐</span>
+                    Network Information
+                </h2>
+                <div class="network-info">
+                    <div class="network-card">
+                        <div class="network-icon">🌐</div>
+                        <div class="network-details">
+                            <h3>Primary IP Address</h3>
+                            <p class="ip-address">{{ ip_address }}</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -191,7 +208,7 @@
                             </tr>
                         </thead>
                         <tbody>
-{top_processes}
+                            {{ top_processes }}
                         </tbody>
                     </table>
                 </div>
@@ -203,18 +220,18 @@
                     <span class="title-icon">📁</span>
                     File Statistics
                 </h2>
-                <p class="analyzed-folder">Analyzed folder: <code>{analyzed_folder}</code></p>
+                <p class="analyzed-folder">Analyzed folder: <code>{{ analyzed_folder }}</code></p>
                 
                 <div class="files-grid">
                     <div class="file-card">
                         <div class="file-icon">📄</div>
                         <div class="file-details">
                             <h4>. txt files</h4>
-                            <p class="file-count">{txt_count} files</p>
+                            <p class="file-count">{{ txt_count }} files</p>
                             <div class="file-bar">
-                                <div class="file-bar-fill" data-width="{txt_percent}"></div>
+                                <div class="file-bar-fill" data-width="{{ txt_percent }}"></div>
                             </div>
-                            <p class="file-percent">{txt_percent}%</p>
+                            <p class="file-percent">{{ txt_percent }}%</p>
                         </div>
                     </div>
 
@@ -222,11 +239,11 @@
                         <div class="file-icon">🐍</div>
                         <div class="file-details">
                             <h4>.py files</h4>
-                            <p class="file-count">{py_count} files</p>
+                            <p class="file-count">{{ py_count }} files</p>
                             <div class="file-bar">
-                                <div class="file-bar-fill" data-width="{py_percent}"></div>
+                                <div class="file-bar-fill" data-width="{{ py_percent }}"></div>
                             </div>
-                            <p class="file-percent">{py_percent}%</p>
+                            <p class="file-percent">{{ py_percent }}%</p>
                         </div>
                     </div>
 
@@ -234,11 +251,11 @@
                         <div class="file-icon">📕</div>
                         <div class="file-details">
                             <h4>.pdf files</h4>
-                            <p class="file-count">{pdf_count} files</p>
+                            <p class="file-count">{{ pdf_count }} files</p>
                             <div class="file-bar">
-                                <div class="file-bar-fill" data-width="{pdf_percent}"></div>
+                                <div class="file-bar-fill" data-width="{{ pdf_percent }}"></div>
                             </div>
-                            <p class="file-percent">{pdf_percent}%</p>
+                            <p class="file-percent">{{ pdf_percent }}%</p>
                         </div>
                     </div>
 
@@ -246,17 +263,17 @@
                         <div class="file-icon">🖼️</div>
                         <div class="file-details">
                             <h4>.jpg files</h4>
-                            <p class="file-count">{jpg_count} files</p>
+                            <p class="file-count">{{ jpg_count }} files</p>
                             <div class="file-bar">
-                                <div class="file-bar-fill" data-width="{jpg_percent}"></div>
+                                <div class="file-bar-fill" data-width="{{ jpg_percent }}"></div>
                             </div>
-                            <p class="file-percent">{jpg_percent}%</p>
+                            <p class="file-percent">{{ jpg_percent }}%</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="total-files-banner">
-                    <strong>Total analyzed files: </strong> {total_files}
+                    <strong>Total analyzed files: </strong> {{ total_files }}
                 </div>
             </section>
         </div>

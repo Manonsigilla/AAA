@@ -10,6 +10,7 @@ import psutil
 import platform
 import socket
 import time
+import json
 from datetime import datetime
 import os
 from pathlib import Path
@@ -235,6 +236,25 @@ def analyze_files(directory):
         'jpg_percent': str(jpg_percent),
         'total_files':  str(total_files)
     }
+    
+def save_to_json(data):
+    """
+    Save collected data to JSON file
+    Args:
+        data: dictionary containing all system information
+    """
+    # Clean data for JSON (remove HTML content)
+    json_data = data.copy()
+    
+    # Remove HTML table rows from JSON
+    if 'top_processes' in json_data: 
+        del json_data['top_processes']
+    
+    # Write to JSON file
+    with open('system_data.json', 'w', encoding='utf-8') as f:
+        json.dump(json_data, f, indent=4, ensure_ascii=False)
+    
+    print("✅ system_data.json generated successfully!")
 
 def generate_html(data):
     """
@@ -247,13 +267,18 @@ def generate_html(data):
         with open('template.html', 'r', encoding='utf-8') as f:
             html_content = f.read()
     except FileNotFoundError:
-        print("Error: template.html not found!")
+        print("❌ Error: template.html not found!")
         return
     
-    # Replace all variables in template
+    # Replace all variables in template (support both { } and {{ }})
     for key, value in data.items():
-        placeholder = '{' + key + '}'
-        html_content = html_content.replace(placeholder, str(value))
+        # Replace {{ variable }}
+        placeholder_double = '{{ ' + key + ' }}'
+        html_content = html_content.replace(placeholder_double, str(value))
+        
+        # Also replace { variable } for backwards compatibility
+        placeholder_single = '{' + key + '}'
+        html_content = html_content.replace(placeholder_single, str(value))
     
     # Write generated HTML file
     with open('index.html', 'w', encoding='utf-8') as f:
@@ -295,28 +320,31 @@ def main():
     print("📈 Collecting process info...")
     data.update(get_top_processes())
     
-    # Analyze files (you can change the directory here)
+    # Analyze files
     print("📁 Analyzing files...")
-    # Smart directory selection based on OS
     if platform.system() == "Windows":
         analyze_directory = os.path.join(os.path.expanduser("~"), "Documents")
     else:
         analyze_directory = os.path.expanduser("~/Documents")
     
-    # Fallback to current directory if Documents doesn't exist
     if not os.path.exists(analyze_directory):
         analyze_directory = "."
         print(f"📁 Documents folder not found, analyzing current directory instead.")
     
     data.update(analyze_files(analyze_directory))
     
+    # Save to JSON
+    print("💾 Saving data to JSON...")
+    save_to_json(data)
+    
     # Generate HTML
     print("🎨 Generating HTML dashboard...")
     generate_html(data)
     
     print("=" * 50)
-    print("✨ Done! Open index.html in your browser to view the dashboard.")
-    print(f"📍 File location: {os.path.abspath('index.html')}")
+    print("✨ Done!  Open index.html in your browser to view the dashboard.")
+    print(f"📍 HTML file: {os.path.abspath('index.html')}")
+    print(f"📍 JSON file: {os.path.abspath('system_data.json')}")
 
 # Entry point
 if __name__ == "__main__":

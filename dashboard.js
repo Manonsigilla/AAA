@@ -113,22 +113,40 @@ if (mobileMenuToggle && sidebar) {
     });
 }
 
-
 // === HIGHLIGHT ACTIVE SECTION ON SCROLL ===
 const sections = document.querySelectorAll('.section');
 
 function highlightActiveSection() {
     let current = 'overview'; // Default to overview
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        // Check if section is in viewport
-        if (window.pageYOffset >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
+    // Get scroll position
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Check if we're at the bottom of the page
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const isAtBottom = (scrollPosition + windowHeight) >= (documentHeight - 50);
+    
+    // If at bottom, highlight last section
+    if (isAtBottom && sections.length > 0) {
+        const lastSection = sections[sections.length - 1];
+        current = lastSection.getAttribute('id');
+    } else {
+        // Normal scroll detection
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+            
+            // Adjust offset for sticky header (100px)
+            const offset = 150;
+            
+            // Check if section is in viewport
+            if (scrollPosition >= (sectionTop - offset) && scrollPosition < (sectionBottom - offset)) {
+                current = section.getAttribute('id');
+            }
+        });
+    }
     
     // Update active link
     navLinks.forEach(link => {
