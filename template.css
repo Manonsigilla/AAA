@@ -5,9 +5,9 @@ Challenge Triple A - System Monitor CSS
 /* === CSS Variables === */
 :root {
     /* Primary Colors - Cyan/Teal Theme */
-    --primary-color:  #00d4aa;
+    --primary-color:  #00d4aaa9;
     --primary-dark: #00a67e;
-    --primary-light:  #00ffcc;
+    --primary-light:  #00ffcca0;
     --secondary-color: #0ea5e9;
     --accent-color: #06b6d4;
     
