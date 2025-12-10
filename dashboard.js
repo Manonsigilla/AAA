@@ -200,3 +200,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial active section
     highlightActiveSection();
 });
+
+// === CHRISTMAS THEME TOGGLE ===
+const themeToggle = document.getElementById('themeToggle');
+const snowflakes = document.getElementById('snowflakes');
+const htmlElement = document.documentElement;
+
+// Check if Christmas theme is saved in localStorage
+const savedTheme = localStorage.getItem('christmasTheme');
+if (savedTheme === 'enabled') {
+    enableChristmasTheme();
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+        if (htmlElement.classList.contains('christmas-theme')) {
+            disableChristmasTheme();
+        } else {
+            enableChristmasTheme();
+        }
+    });
+}
+
+function enableChristmasTheme() {
+    htmlElement.classList.add('christmas-theme');
+    if (snowflakes) {
+        snowflakes.style.display = 'block';
+    }
+    if (themeToggle) {
+        themeToggle.textContent = '🎅';
+    }
+    localStorage.setItem('christmasTheme', 'enabled');
+    console.log('🎄 Merry Christmas! Theme activated');
+}
+
+function disableChristmasTheme() {
+    htmlElement.classList.remove('christmas-theme');
+    if (snowflakes) {
+        snowflakes.style.display = 'none';
+    }
+    if (themeToggle) {
+        themeToggle.textContent = '🎄';
+    }
+    localStorage.setItem('christmasTheme', 'disabled');
+    console.log('👋 Christmas theme disabled');
+}

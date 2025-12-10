@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge Triple A - System Monitor</title>
     <link rel="stylesheet" href="template.css">
+    <link rel="stylesheet" href="christmas-theme.css">
 </head>
 <body>
     <!-- Mobile menu toggle -->
@@ -64,7 +65,7 @@
         <header class="top-bar">
             <div class="top-left">
                 <h1 class="page-title">🖥️ System Monitoring Dashboard</h1>
-                <p class="last-update">Last update: 2025-12-10 10:55:26</p>
+                <p class="last-update">Last update: 2025-12-10 11:38:56</p>
             </div>
             <div class="top-right">
                 <div class="live-clock" id="liveClock">00:00:00</div>
@@ -111,7 +112,7 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">Uptime:</span>
-                        <span class="info-value">120 hours, 48 minutes</span>
+                        <span class="info-value">121 hours, 32 minutes</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Connected Users:</span>
@@ -139,7 +140,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-header">CPU Usage</div>
-                        <div class="stat-value">35.9%</div>
+                        <div class="stat-value">38.9%</div>
                         <div class="stat-footer">Current Load</div>
                     </div>
                 </div>
@@ -159,18 +160,18 @@
                         </div>
                         <div class="memory-row">
                             <span class="mem-label">Used RAM:</span>
-                            <span class="mem-value">7.08 GB</span>
+                            <span class="mem-value">7.01 GB</span>
                         </div>
                         <div class="memory-row">
                             <span class="mem-label">RAM Usage:</span>
-                            <span class="mem-value">91.8%</span>
+                            <span class="mem-value">90.9%</span>
                         </div>
                     </div>
                     <div class="progress-wrapper">
                         <div class="progress-bar-container">
-                            <div class="progress-bar-fill" data-width="91.8"></div>
+                            <div class="progress-bar-fill" data-width="90.9"></div>
                         </div>
-                        <p class="progress-label">91.8% Used</p>
+                        <p class="progress-label">90.9% Used</p>
                     </div>
                 </div>
             </section>
@@ -210,18 +211,18 @@
                         <tbody>
                                                     <tr>
                             <td>System Idle Process</td>
-                            <td>808.3%</td>
+                            <td>824.1%</td>
                             <td>0.0%</td>
                         </tr>
                         <tr>
-                            <td>System</td>
-                            <td>69.9%</td>
-                            <td>0.0%</td>
+                            <td>TiWorker.exe</td>
+                            <td>60.4%</td>
+                            <td>0.7%</td>
                         </tr>
                         <tr>
-                            <td>MemCompression</td>
-                            <td>67.7%</td>
-                            <td>0.2%</td>
+                            <td>python.exe</td>
+                            <td>59.6%</td>
+                            <td>0.3%</td>
                         </tr>
 
                         </tbody>
@@ -294,7 +295,36 @@
         </div>
     </main>
 
-    <!-- JavaScript externe -->
+    <!-- Snowflakes (hidden by default) -->
+    <div class="snowflakes" id="snowflakes">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Christmas Theme">
+        🎄
+    </button>
+
+    <!-- JavaScript -->
     <script src="dashboard.js"></script>
 </body>
 </html>

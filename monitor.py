@@ -100,16 +100,18 @@ def get_memory_info():
 
 def get_network_info():
     """
-    Get primary IP address
+    Get primary IP address using socket connection simulation
     Returns: dict with IP address
     """
     try:
-        # Create a socket to determine the primary IP
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))
-        ip_address = s.getsockname()[0]
-        s.close()
-    except:
+        # Create a UDP socket (no actual connection established)
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            # Connect to Google DNS (doesn't send data, just determines route)
+            s.connect(("8.8.8.8", 80))
+            # Get the local IP that would be used for this route
+            ip_address = s.getsockname()[0]
+    except Exception as e:
+        print(f"   ⚠️  Could not determine IP: {e}")
         ip_address = "127.0.0.1"
     
     return {
