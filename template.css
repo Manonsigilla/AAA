@@ -1072,7 +1072,7 @@ FONT AWESOME ICONS STYLING
     margin-right: 20px;
 }
 
-.welcome-banner: hover .illustration-img {
+.welcome-banner:hover .illustration-img {
     transform: scale(1.1) rotate(-5deg);
 }
 
@@ -1103,15 +1103,15 @@ FONT AWESOME ICONS STYLING
     display: none;
 }
 
-.christmas-theme .theme-icon. default-theme {
+.christmas-theme .theme-icon.default-theme {
     display:  none;
 }
 
-.christmas-theme .theme-icon. christmas-theme-icon {
+.christmas-theme .theme-icon.christmas-theme-icon {
     display: block;
 }
 
-. theme-toggle:hover .theme-icon {
+.theme-toggle:hover .theme-icon {
     transform: scale(1.2) rotate(10deg);
 }
 
