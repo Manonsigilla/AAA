@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
 """
 Challenge Triple A - System Monitoring Script
 This script collects system information and generates an HTML dashboard
-Author: [Your Team Names]
+Author: [Manon Alex Angie]
 Date: 2025-12-09
 """
 
@@ -33,7 +32,7 @@ def get_system_info():
                 if line.startswith('PRETTY_NAME'):
                     os_name = line.split('=')[1].strip().replace('"', '')
                     break
-    except:
+    except (FileNotFoundError, PermissionError, IOError):
         pass
     
     # Get boot time
@@ -111,7 +110,7 @@ def get_network_info():
             # Get the local IP that would be used for this route
             ip_address = s.getsockname()[0]
     except Exception as e:
-        print(f"   ⚠️  Could not determine IP: {e}")
+        print(f"   [WARN] Could not determine IP:  {e}")
         ip_address = "127.0.0.1"
     
     return {
@@ -123,13 +122,13 @@ def get_top_processes():
     Get all processes sorted by CPU and memory usage
     Returns: dict with HTML table rows for top 3 and all processes
     """
-    print("   ⏳ Measuring CPU usage (this takes a moment)...")
+    print("   [INFO] Measuring CPU usage (this takes a moment)...")
     
     # First call to initialize CPU measurement
     for proc in psutil.process_iter():
         try:
             proc.cpu_percent()
-        except:
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
             pass
     
     # Wait for accurate CPU measurement
@@ -198,10 +197,10 @@ def analyze_files(directory):
     
     # Check if directory exists
     if not dir_path.exists():
-        print(f"   ⚠️  Directory not found: {directory}")
+        print(f"   [WARN] Directory not found: {directory}")
         dir_path = Path(".")
     
-    print(f"   📂 Scanning:  {dir_path.absolute()}")
+    print(f"   [>>] Scanning:  {dir_path. absolute()}")
     
     # Count files by extension
     file_count = 0
@@ -213,13 +212,13 @@ def analyze_files(directory):
                 if ext in extensions:
                     extensions[ext] += 1
         
-        print(f"   ✅ Total files scanned: {file_count}")
-        print(f"   📊 Found:  {sum(extensions.values())} matching files")
+        print(f"   [OK] Total files scanned: {file_count}")
+        print(f"   [OK] Found:  {sum(extensions.values())} matching files")
         
     except PermissionError as e:
-        print(f"   ⚠️  Permission denied: {e}")
+        print(f"   [WARN] Permission denied: {e}")
     except Exception as e:
-        print(f"   ❌ Error:  {e}")
+        print(f"   [ERROR] Error:  {e}")
     
     # Calculate total files
     total_files = sum(extensions.values())
@@ -229,7 +228,7 @@ def analyze_files(directory):
         # Set default values for demo
         extensions = {'.txt': 10, '.py': 5, '.pdf': 3, '.jpg': 2}
         total_files = 20
-        print("   ⚠️  No matching files found.  Using demo values.")
+        print("   [WARN] No matching files found.  Using demo values.")
     
     # Calculate percentages
     txt_percent = round((extensions['.txt'] / total_files) * 100, 1)
@@ -262,12 +261,14 @@ def save_to_json(data):
     # Remove HTML table rows from JSON
     if 'top_processes' in json_data: 
         del json_data['top_processes']
+    if 'all_processes' in json_data:
+        del json_data['all_processes']
     
     # Write to JSON file
     with open('system_data.json', 'w', encoding='utf-8') as f:
         json.dump(json_data, f, indent=4, ensure_ascii=False)
     
-    print("✅ system_data.json generated successfully!")
+    print("[OK] system_data.json generated successfully!")
 
 def generate_html(data):
     """
@@ -280,32 +281,29 @@ def generate_html(data):
         with open('template.html', 'r', encoding='utf-8') as f:
             html_content = f.read()
     except FileNotFoundError:
-        print("❌ Error: template.html not found!")
+        print("[ERROR] template.html not found!")
         return
     
-    # Replace all variables in template (support both { } and {{ }})
+    # Replace all variables in template (support only {{ }})
     for key, value in data.items():
         # Replace {{ variable }}
         placeholder_double = '{{ ' + key + ' }}'
         html_content = html_content.replace(placeholder_double, str(value))
-        
-        # Also replace { variable } for backwards compatibility
-        placeholder_single = '{' + key + '}'
-        html_content = html_content.replace(placeholder_single, str(value))
     
     # Write generated HTML file
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
     
-    print("✅ index.html generated successfully!")
+    print("[OK] index.html generated successfully!")
 
 def main():
     """
     Main function - orchestrates data collection and HTML generation
     """
-    print("🖥️  Challenge Triple A - System Monitor")
-    print("=" * 50)
-    print("Collecting system information...")
+    print("\n" + "=" * 60)
+    print("  Challenge Triple A - System Monitor")
+    print("=" * 60)
+    print("[>>] Collecting system information.. .\n")
     
     # Collect all data
     data = {}
@@ -314,27 +312,27 @@ def main():
     data['timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
     # Collect system information
-    print("📊 Collecting system info...")
+    print("[>>] Collecting system info...")
     data.update(get_system_info())
     
     # Collect CPU information
-    print("⚙️  Collecting CPU info...")
+    print("[>>] Collecting CPU info...")
     data.update(get_cpu_info())
     
     # Collect memory information
-    print("🧠 Collecting memory info...")
+    print("[>>] Collecting memory info...")
     data.update(get_memory_info())
     
     # Collect network information
-    print("🌐 Collecting network info...")
+    print("[>>] Collecting network info...")
     data.update(get_network_info())
     
     # Collect process information
-    print("📈 Collecting process info...")
+    print("[>>] Collecting process info...")
     data.update(get_top_processes())
     
     # Analyze files
-    print("📁 Analyzing files...")
+    print("[>>] Analyzing files...")
     if platform.system() == "Windows":
         analyze_directory = os.path.join(os.path.expanduser("~"), "Documents")
     else:
@@ -342,22 +340,23 @@ def main():
     
     if not os.path.exists(analyze_directory):
         analyze_directory = "."
-        print(f"📁 Documents folder not found, analyzing current directory instead.")
+        print(f"[INFO] Documents folder not found, analyzing current directory instead.")
     
     data.update(analyze_files(analyze_directory))
     
     # Save to JSON
-    print("💾 Saving data to JSON...")
+    print("\n[>>] Saving data to JSON...")
     save_to_json(data)
     
     # Generate HTML
-    print("🎨 Generating HTML dashboard...")
+    print("[>>] Generating HTML dashboard...")
     generate_html(data)
     
-    print("=" * 50)
-    print("✨ Done!  Open index.html in your browser to view the dashboard.")
-    print(f"📍 HTML file: {os.path.abspath('index.html')}")
-    print(f"📍 JSON file: {os.path.abspath('system_data.json')}")
+    print("\n" + "=" * 60)
+    print("[OK] Done! Open index.html in your browser to view the dashboard.")
+    print(f"[>>] HTML file:  {os.path.abspath('index.html')}")
+    print(f"[>>] JSON file: {os.path. abspath('system_data.json')}")
+    print("=" * 60 + "\n")
 
 # Entry point
 if __name__ == "__main__":

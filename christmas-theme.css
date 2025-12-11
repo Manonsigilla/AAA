@@ -7,9 +7,9 @@ Christmas Theme - AAA System Monitor
     /* Christmas Colors */
     --primary-color: #c41e3a;      /* Christmas Red */
     --primary-dark: #8b0000;       /* Dark Red */
-    --primary-light: #ff4d6d;      /* Light Red */
-    --secondary-color: #165b33;    /* Christmas Green */
-    --accent-color: #ffd700;       /* Gold */
+    --primary-light: #ff6b6b;      /* Light Red */
+    --secondary-color: #2d5f3f;    /* Christmas Green */
+    --accent-color: #e8b86d;       /* Gold */
     
     /* Background Colors */
     --bg-primary: #0a1612;
@@ -24,9 +24,11 @@ Christmas Theme - AAA System Monitor
     --text-muted: #64748b;
     
     /* Christmas specific */
-    --christmas-red: #c41e3a;
-    --christmas-green: #165b33;
-    --christmas-gold: #ffd700;
+    --christmas-red: #b8474b;        /* Rouge doux */
+    --christmas-green: #3d6b52;      /* Vert sauge */
+    --christmas-gold:  #d4a574;       /* Or crème */
+    --christmas-white: #f0f4f8;      /* Blanc cassé */
+    --christmas-accent: #9c6644;     /* Marron cannelle */
     --snow-white: #ffffff;
 }
 
@@ -98,48 +100,36 @@ Christmas Theme - AAA System Monitor
     background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
 }
 
-.christmas-theme .welcome-banner::after {
-    content:  '🎄';
-    position:  absolute;
-    bottom: 10px;
-    right: 20px;
-    font-size:  3em;
-    opacity: 0.3;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* === Christmas Decorations on Sidebar === */
-.christmas-theme .sidebar-header::before {
-    content: '🎅';
-    position: absolute;
-    top:  10px;
-    right: 10px;
-    font-size:  1.5em;
-    animation: wiggle 3s ease-in-out infinite;
-}
-
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-10deg); }
-    75% { transform: rotate(10deg); }
-}
-
-.christmas-theme .sidebar-footer::after {
-    content: '🎁';
+/* === Theme Toggle Images === */
+.theme-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    transition: all 0.3s ease;
     display: block;
-    font-size: 2em;
-    margin-top: 10px;
-    animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+/* Par défaut, montrer l'arbre, cacher le père Noël */
+.theme-icon.christmas-theme-icon {
+    display: none;
+}
+
+/* En mode Christmas, cacher l'arbre, montrer le père Noël */
+.christmas-theme .theme-icon.default-theme {
+    display: none;
+}
+
+.christmas-theme .theme-icon.christmas-theme-icon {
+    display: block;
+}
+
+/* Animation au hover */
+.theme-toggle:hover .theme-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.theme-toggle:active .theme-icon {
+    transform: scale(0.95) rotate(-10deg);
 }
 
 /* === Christmas Glow Effects === */
@@ -214,17 +204,6 @@ Christmas Theme - AAA System Monitor
     transform: scale(0.95);
 }
 
-/* Hide toggle on mobile */
-@media (max-width: 768px) {
-    .theme-toggle {
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.5em;
-    }
-}
-
 /* === Christmas Live Clock === */
 .christmas-theme .live-clock {
     border-color: var(--christmas-gold);
@@ -239,4 +218,108 @@ Christmas Theme - AAA System Monitor
 
 .christmas-theme .ip-address {
     color: var(--christmas-gold);
+}
+
+/* ========================================
+CHRISTMAS THEME - FONT AWESOME ICONS
+======================================== */
+
+/* Logo icon in Christmas theme */
+.christmas-theme .sidebar-header .logo i {
+    color: var(--christmas-green);
+}
+
+.christmas-theme .sidebar-header:hover .logo i {
+    color: var(--christmas-gold);
+    filter: drop-shadow(0 0 10px var(--christmas-gold));
+}
+
+/* Navigation icons in Christmas theme */
+.christmas-theme .nav-link .icon i {
+    color: var(--text-secondary);
+}
+
+.christmas-theme .nav-link:hover .icon i {
+    color: var(--christmas-gold);
+}
+
+.christmas-theme .nav-link.active .icon i {
+    color: var(--christmas-green);
+    filter: drop-shadow(0 0 8px var(--christmas-green));
+}
+
+/* Page title icon in Christmas theme */
+.christmas-theme .page-title .title-icon-img {
+    filter: drop-shadow(0 0 8px var(--christmas-gold));
+    animation: christmas-pulse-img 2s ease-in-out infinite;
+}
+
+@keyframes christmas-pulse-img {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px var(--christmas-gold));
+        transform: scale(1);
+    }
+    50% {
+        filter: drop-shadow(0 0 12px var(--christmas-green));
+        transform: scale(1.05);
+    }
+}
+
+/* Refresh button icon in Christmas theme */
+.christmas-theme .refresh-icon i {
+    color:  var(--snow-white);
+}
+
+.christmas-theme .refresh-btn:hover .refresh-icon i {
+    color: var(--christmas-gold);
+    filter: drop-shadow(0 0 8px var(--christmas-gold));
+}
+
+/* Welcome illustration in Christmas theme */
+.christmas-theme .illustration-img {
+    filter: drop-shadow(0 0 15px var(--christmas-green));
+}
+
+/* Section title icons in Christmas theme */
+.christmas-theme .title-icon i {
+    color:  var(--christmas-green);
+}
+
+/* Network icon in Christmas theme */
+.christmas-theme .network-icon i {
+    color: var(--christmas-green);
+}
+
+/* File icons in Christmas theme */
+.christmas-theme .file-icon i {
+    color: var(--christmas-green);
+}
+
+.christmas-theme .file-card:hover .file-icon i {
+    color: var(--christmas-gold);
+}
+
+/* Christmas sparkle effect on active nav icons */
+.christmas-theme .nav-link.active .icon i {
+    animation: christmas-sparkle-soft 1.5s ease-in-out infinite;
+}
+
+@keyframes christmas-sparkle-soft {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px var(--christmas-green));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px var(--christmas-gold));
+    }
+}
+
+/* Hide toggle on mobile */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
 }

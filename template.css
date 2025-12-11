@@ -335,6 +335,7 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+    gap: var(--spacing-lg);
 }
 
 .welcome-banner::before {
@@ -382,6 +383,8 @@ body {
     font-size: 8em;
     opacity: 0.3;
     animation: float 3s ease-in-out infinite;
+    padding-right: 40px;
+    margin-right: 20px;
 }
 
 @keyframes float {
@@ -804,27 +807,6 @@ body {
     }
 }
 
-/* === Responsive === */
-@media (max-width: 768px) {
-    .show-more-btn,
-    .show-less-btn {
-        font-size: 0.85em;
-        padding: var(--spacing-xs) var(--spacing-md);
-    }
-    
-    .show-less-btn {
-        top: 90px;
-    }
-        
-    .process-preview {
-        max-height: 120px;
-    }
-
-    .blur-overlay {
-        height: 100px;
-    }
-}
-
 /* === Files Grid === */
 .analyzed-folder {
     margin-bottom: var(--spacing-lg);
@@ -980,6 +962,160 @@ body {
 }
 
 /* ========================================
+FONT AWESOME ICONS STYLING
+======================================== */
+
+/* Logo icon in sidebar */
+.sidebar-header .logo i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.sidebar-header:hover .logo i {
+    transform: scale(1.1);
+    color: var(--primary-light);
+}
+
+/* Navigation icons */
+.nav-link .icon i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.nav-link:hover .icon i,
+.nav-link.active .icon i {
+    color: var(--primary-color);
+    transform: scale(1.15);
+}
+
+/* Refresh button icon */
+.refresh-icon i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    color: var(--text-primary);
+}
+
+.refresh-btn:hover .refresh-icon i {
+    transform: rotate(180deg);
+    color: var(--primary-light);
+}
+
+.refresh-btn:active .refresh-icon i {
+    transform: rotate(360deg);
+}
+
+/* Welcome illustration icon */
+.welcome-illustration i {
+    font-size: 5rem;
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+/* Section title icons */
+.title-icon i {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-right: 10px;
+    vertical-align:  middle;
+}
+
+/* Network icon */
+.network-icon i {
+    font-size: 2. 5rem;
+    color: var(--primary-color);
+}
+
+/* File icons */
+.file-icon i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.file-card:hover .file-icon i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Process buttons icons */
+.show-more-btn .icon i,
+.show-less-btn .icon i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.show-more-btn:hover .icon i,
+.show-less-btn:hover .icon i {
+    transform: scale(1.2);
+}
+
+/* Icon glow effect on hover for active state */
+.nav-link.active .icon i {
+    filter: drop-shadow(0 0 8px var(--primary-color));
+}
+
+/* Additional icon states */
+.icon i {
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+}
+
+/* Icons8 Images Styling */
+.illustration-img {
+    width: 120px;
+    height: 120px;
+    object-fit:  contain;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+    margin-right: 20px;
+}
+
+.welcome-banner: hover .illustration-img {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.title-icon-img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+/* Theme toggle images */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.theme-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.theme-icon.christmas-theme-icon {
+    display: none;
+}
+
+.christmas-theme .theme-icon. default-theme {
+    display:  none;
+}
+
+.christmas-theme .theme-icon. christmas-theme-icon {
+    display: block;
+}
+
+. theme-toggle:hover .theme-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* ========================================
 RESPONSIVE DESIGN
 ======================================== */
 
@@ -1072,6 +1208,51 @@ RESPONSIVE DESIGN
     
     .ip-address {
         font-size: 1.4em;
+    }
+
+    .show-more-btn,
+    .show-less-btn {
+        font-size: 0.85em;
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    .show-less-btn {
+        top: 90px;
+    }
+        
+    .process-preview {
+        max-height: 120px;
+    }
+
+    .blur-overlay {
+        height: 100px;
+    }
+
+    .sidebar-header .logo i {
+        font-size: 1.5rem;
+    }
+    
+    .nav-link .icon i {
+        font-size: 1.1rem;
+    }
+    
+    .page-title i {
+        font-size: 1.2rem;
+        margin-right: 5px;
+    }
+    
+    .welcome-illustration i {
+        font-size: 3rem;
+    }
+
+    .illustration-img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .title-icon-img {
+        width: 24px;
+        height: 24px;
     }
 }
 

@@ -18,37 +18,37 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">📊</div>
+            <div class="logo"><i class="fa-solid fa-chart-column"></i></div>
             <h2>MONITOR</h2>
         </div>
         
         <ul class="nav-links">
             <li><a href="#overview" class="nav-link active">
-                <span class="icon">🏠</span>
+                <span class="icon"><i class="fa-solid fa-house"></i></span>
                 <span class="text">Overview</span>
             </a></li>
             <li><a href="#system-section" class="nav-link">
-                <span class="icon">💻</span>
+                <span class="icon"><i class="fa-solid fa-laptop"></i></span>
                 <span class="text">System</span>
             </a></li>
             <li><a href="#cpu-section" class="nav-link">
-                <span class="icon">⚙️</span>
+                <span class="icon"><i class="fa-solid fa-gear"></i></span>
                 <span class="text">CPU</span>
             </a></li>
             <li><a href="#memory-section" class="nav-link">
-                <span class="icon">🧠</span>
+                <span class="icon"><i class="fa-solid fa-microchip"></i></span>
                 <span class="text">Memory</span>
             </a></li>
             <li><a href="#network-section" class="nav-link">
-                <span class="icon">🌐</span>
+                <span class="icon"><i class="fa-solid fa-network-wired"></i></span>
                 <span class="text">Network</span>
             </a></li>
             <li><a href="#processes-section" class="nav-link">
-                <span class="icon">📈</span>
+                <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
                 <span class="text">Processes</span>
             </a></li>
             <li><a href="#files-section" class="nav-link">
-                <span class="icon">📁</span>
+                <span class="icon"><i class="fa-solid fa-folder"></i></span>
                 <span class="text">Files</span>
             </a></li>
         </ul>
@@ -64,13 +64,13 @@
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="top-left">
-                <h1 class="page-title">🖥️ System Monitoring Dashboard</h1>
+                <h1 class="page-title"><img src="/assets/images/laptop-icon.png" alt="Laptop" class="title-icon-img"> System Monitoring Dashboard</h1>
                 <p class="last-update">Last update: {{ timestamp }}</p>
             </div>
             <div class="top-right">
                 <div class="live-clock" id="liveClock">00:00:00</div>
                 <button class="refresh-btn" id="refreshBtn" title="Refresh dashboard">
-                    <span class="refresh-icon">🔄</span>
+                    <span class="refresh-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
                     <span class="refresh-text">Refresh</span>
                 </button>
             </div>
@@ -85,7 +85,7 @@
                 <p class="subtitle">All stats updated in real-time</p>
             </div>
             <div class="welcome-illustration">
-                💻
+                <img src="/assets/images/laptop-icon.png" alt="Laptop" class="illustration-img">
             </div>
         </div>
 
@@ -94,7 +94,7 @@
             <!-- System Section -->
             <section id="system-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">💻</span>
+                    <span class="title-icon"><i class="fa-solid fa-laptop"></i></span>
                     System Information
                 </h2>
                 <div class="info-grid">
@@ -124,7 +124,7 @@
             <!-- CPU Section -->
             <section id="cpu-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">⚙️</span>
+                    <span class="title-icon"><i class="fa-solid fa-gear"></i></span>
                     CPU Information
                 </h2>
                 <div class="stats-row">
@@ -149,7 +149,7 @@
             <!-- Memory Section -->
             <section id="memory-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">🧠</span>
+                    <span class="title-icon"><i class="fa-solid fa-microchip"></i></span>
                     Memory Information
                 </h2>
                 <div class="memory-container">
@@ -179,12 +179,12 @@
             <!-- Network Section -->
             <section id="network-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">🌐</span>
+                    <span class="title-icon"><i class="fa-solid fa-network-wired"></i></span>
                     Network Information
                 </h2>
                 <div class="network-info">
                     <div class="network-card">
-                        <div class="network-icon">🌐</div>
+                        <div class="network-icon"><i class="fa-solid fa-wifi"></i></div>
                         <div class="network-details">
                             <h3>Primary IP Address</h3>
                             <p class="ip-address">{{ ip_address }}</p>
@@ -196,7 +196,7 @@
             <!-- Processes Section -->
             <section id="processes-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">📈</span>
+                    <span class="title-icon"><i class="fa-solid fa-chart-line"></i></span>
                     Top 3 Processes
                     <span class="process-count">({{ total_processes }} total)</span>
                 </h2>
@@ -230,9 +230,9 @@
                     <!-- Bouton Voir Plus -->
                     <div class="show-more-container" id="showMoreContainer">
                         <button class="show-more-btn" id="showMoreBtn">
-                            <span class="icon">👁️</span>
+                            <span class="icon"><i class="fa-solid fa-eye"></i></span>
                             <span class="text">Voir plus</span>
-                            <span class="icon">➕</span>
+                            <span class="icon"><i class="fa-solid fa-plus"></i></span>
                         </button>
                     </div>
                     
@@ -249,23 +249,23 @@
                 
                 <!-- Bouton Voir Moins -->
                 <button class="show-less-btn" id="showLessBtn">
-                    <span class="icon">👁️</span>
+                    <span class="icon"><i class="fa-solid fa-eye"></i></span>
                     <span class="text">Voir moins</span>
-                    <span class="icon">➖</span>
+                    <span class="icon"><i class="fa-solid fa-minus"></i></span>
                 </button>
             </section>
 
             <!-- Files Section -->
             <section id="files-section" class="section">
                 <h2 class="section-title">
-                    <span class="title-icon">📁</span>
+                    <span class="title-icon"><i class="fa-solid fa-folder"></i></span>
                     File Statistics
                 </h2>
                 <p class="analyzed-folder">Analyzed folder: <code>{{ analyzed_folder }}</code></p>
                 
                 <div class="files-grid">
                     <div class="file-card">
-                        <div class="file-icon">📄</div>
+                        <div class="file-icon"><i class="fa-solid fa-file-lines"></i></div>
                         <div class="file-details">
                             <h4>.txt files</h4>
                             <p class="file-count">{{ txt_count }} files</p>
@@ -277,7 +277,7 @@
                     </div>
 
                     <div class="file-card">
-                        <div class="file-icon">🐍</div>
+                        <div class="file-icon"><i class="fa-brands fa-python"></i></div>
                         <div class="file-details">
                             <h4>.py files</h4>
                             <p class="file-count">{{ py_count }} files</p>
@@ -289,7 +289,7 @@
                     </div>
 
                     <div class="file-card">
-                        <div class="file-icon">📕</div>
+                        <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                         <div class="file-details">
                             <h4>.pdf files</h4>
                             <p class="file-count">{{ pdf_count }} files</p>
@@ -301,7 +301,7 @@
                     </div>
 
                     <div class="file-card">
-                        <div class="file-icon">🖼️</div>
+                        <div class="file-icon"><i class="fa-solid fa-image"></i></div>
                         <div class="file-details">
                             <h4>.jpg files</h4>
                             <p class="file-count">{{ jpg_count }} files</p>
@@ -346,10 +346,13 @@
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" id="themeToggle" title="Toggle Christmas Theme">
-        🎄
+        <img src="/assets/images/christmas-tree.png" alt="Christmas" class="theme-icon default-theme">
+        <img src="/assets/images/santa.png" alt="Santa" class="theme-icon christmas-theme-icon">
     </button>
 
     <!-- JavaScript -->
     <script src="dashboard.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/820b23ac92.js" crossorigin="anonymous"></script>
 </body>
 </html>

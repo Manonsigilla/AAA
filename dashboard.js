@@ -2,6 +2,16 @@
 // Challenge Triple A - Dashboard JavaScript
 // ========================================
 
+// === CONSOLE STYLING ===
+const styles = {
+    success: 'background:  #00d4aa; color: white; padding: 3px 8px; border-radius: 3px; font-weight: bold;',
+    error: 'background: #ef4444; color: white; padding:  3px 8px; border-radius: 3px; font-weight: bold;',
+    info: 'background: #0ea5e9; color: white; padding: 3px 8px; border-radius: 3px; font-weight: bold;',
+    warning: 'background:  #fbbf24; color: #0a0e27; padding: 3px 8px; border-radius: 3px; font-weight: bold;',
+    action: 'background: #8b5cf6; color: white; padding: 3px 8px; border-radius: 3px; font-weight: bold;',
+    text: 'color: #94a3b8; padding-left: 8px;'
+};
+
 // === LIVE CLOCK ===
 function updateClock() {
     const now = new Date();
@@ -192,7 +202,7 @@ document.addEventListener('click', function(event) {
 
 // === INITIALIZE ON PAGE LOAD ===
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🖥️ Challenge Triple A Dashboard Loaded');
+    console.log(`%c SUCCESS %c${styles.text}Challenge Triple A Dashboard Loaded`, styles.success, styles.text);
     
     // Animate progress bars
     animateProgressBars();
@@ -223,7 +233,7 @@ if (showMoreBtn && processPreview && allProcessesContainer && showLessBtn) {
         // Show "Voir moins" button (IMPORTANT: use flex!)
         showLessBtn.style.display = 'flex';
         
-        console.log('📈 All processes revealed');
+        console.log(`%c SUCCESS %c${styles.text}All processes revealed successfully`, styles.success, styles.text);
     });
     
     // Hide all processes
@@ -246,7 +256,7 @@ if (showMoreBtn && processPreview && allProcessesContainer && showLessBtn) {
             processSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
-        console.log('📉 Processes collapsed');
+        console.log(`%c SUCCESS %c${styles.text}Processes collapsed successfully`, styles.success, styles.text);
     });
 }
 
@@ -254,6 +264,10 @@ if (showMoreBtn && processPreview && allProcessesContainer && showLessBtn) {
 const themeToggle = document.getElementById('themeToggle');
 const snowflakes = document.getElementById('snowflakes');
 const htmlElement = document.documentElement;
+
+// Get theme icons
+const defaultThemeIcon = document.querySelector('.theme-icon.default-theme');
+const christmasThemeIcon = document.querySelector('.theme-icon.christmas-theme-icon');
 
 // Check if Christmas theme is saved in localStorage
 const savedTheme = localStorage.getItem('christmasTheme');
@@ -273,24 +287,35 @@ if (themeToggle) {
 
 function enableChristmasTheme() {
     htmlElement.classList.add('christmas-theme');
+    
+    // Show snowflakes
     if (snowflakes) {
         snowflakes.style.display = 'block';
     }
-    if (themeToggle) {
-        themeToggle.textContent = '🎅';
+    
+    // Toggle theme icons
+    if (defaultThemeIcon && christmasThemeIcon) {
+        defaultThemeIcon.style. display = 'none';
+        christmasThemeIcon.style. display = 'block';
     }
     localStorage.setItem('christmasTheme', 'enabled');
-    console.log('🎄 Merry Christmas! Theme activated');
+    console.log(`%c SUCCESS %c${styles.text}🎄 Merry Christmas! Theme activated`, styles.success, styles.text);
 }
 
 function disableChristmasTheme() {
     htmlElement.classList.remove('christmas-theme');
+
+    // Hide snowflakes
     if (snowflakes) {
         snowflakes.style.display = 'none';
     }
-    if (themeToggle) {
-        themeToggle.textContent = '🎄';
+
+    // Toggle theme icons
+    if (defaultThemeIcon && christmasThemeIcon) {
+        defaultThemeIcon.style. display = 'block';
+        christmasThemeIcon.style. display = 'none';
     }
+    
     localStorage.setItem('christmasTheme', 'disabled');
-    console.log('👋 Christmas theme disabled');
+    console.log(`%c INFO %c${styles.text}Christmas theme disabled`, styles.info, styles.text);
 }
