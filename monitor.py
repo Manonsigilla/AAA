@@ -71,11 +71,18 @@ def get_cpu_info():
     
     # Get CPU usage percentage (wait 1 second for accurate measurement)
     cpu_percent = psutil.cpu_percent(interval=1)
+    cpu_per_core = psutil.cpu_percent(interval=1, percpu=True)
+    
+    # Generate per-core usage HTML
+    cores_html = ""
+    for i, percent in enumerate(cpu_per_core):
+        cores_html += f'<div>Core {i}: {percent}%</div>'
     
     return {
         'cpu_cores': str(cpu_cores),
         'cpu_freq': str(cpu_freq_current),
-        'cpu_percent': str(round(cpu_percent, 1))
+        'cpu_percent': str(round(cpu_percent, 1)),
+        'cpu_cores_html': cores_html
     }
 
 def get_memory_info():
@@ -116,8 +123,28 @@ def get_network_info():
     return {
         'ip_address': ip_address
     }
+    
+def get_load_average():
+    """
+    Get system load average (1, 5, 15 minutes)
+    Returns: dict with load averages
+    """
+    if hasattr(os, 'getloadavg'):
+        load1, load5, load15 = os.getloadavg()
+        return {
+            'load_1min': str(round(load1, 2)),
+            'load_5min': str(round(load5, 2)),
+            'load_15min': str(round(load15, 2))
+        }
+    else:
+        print("   [WARN] Load average not supported on this OS.")
+        return {
+            'load_1min': 'N/A',
+            'load_5min': 'N/A',
+            'load_15min': 'N/A'
+        }
 
-def get_top_processes():
+def get_processes():
     """
     Get all processes sorted by CPU and memory usage
     Returns: dict with HTML table rows for top 3 and all processes
@@ -185,68 +212,96 @@ def get_top_processes():
 def analyze_files(directory):
     """
     Analyze files in a directory and count by extension
-    Args: 
+    Args:  
         directory:  path to the directory to analyze
-    Returns:  dict with file counts and percentages
+    Returns:  dict with file counts, sizes, and percentages
     """
     # Define file extensions to analyze
-    extensions = {'.txt':  0, '.py': 0, '.pdf': 0, '.jpg': 0}
+    extensions = {
+        '.txt':  {'count': 0, 'size': 0},
+        '.py': {'count': 0, 'size': 0},
+        '.pdf': {'count': 0, 'size': 0},
+        '.jpg': {'count': 0, 'size':  0},
+        '.jpeg':  {'count': 0, 'size': 0},
+        '.png': {'count': 0, 'size': 0},
+        '.docx': {'count':  0, 'size': 0},
+        '.xls':  {'count': 0, 'size': 0},
+        '.doc': {'count': 0, 'size': 0},
+        '.zip': {'count': 0, 'size': 0},
+        '.rar': {'count': 0, 'size': 0},
+        '.mp3': {'count': 0, 'size': 0},
+        '.mp4': {'count':  0, 'size': 0}
+    }
     
     # Convert to Path object
     dir_path = Path(directory)
     
     # Check if directory exists
     if not dir_path.exists():
-        print(f"   [WARN] Directory not found: {directory}")
+        print(f"   [WARN] Directory not found:  {directory}")
         dir_path = Path(".")
     
-    print(f"   [>>] Scanning:  {dir_path. absolute()}")
+    print(f"   [>>] Scanning:  {dir_path.absolute()}")
     
-    # Count files by extension
-    file_count = 0
+    # Count files by extension (ONE LOOP ONLY)
+    total_scanned = 0
     try:
         for file in dir_path.rglob('*'):
             if file.is_file():
-                file_count += 1
+                total_scanned += 1
                 ext = file.suffix.lower()
                 if ext in extensions:
-                    extensions[ext] += 1
+                    extensions[ext]['count'] += 1
+                    extensions[ext]['size'] += file.stat().st_size
         
-        print(f"   [OK] Total files scanned: {file_count}")
-        print(f"   [OK] Found:  {sum(extensions.values())} matching files")
+        print(f"   [OK] Total files scanned: {total_scanned}")
         
     except PermissionError as e:
         print(f"   [WARN] Permission denied: {e}")
     except Exception as e:
-        print(f"   [ERROR] Error:  {e}")
+        print(f"   [ERROR] Error: {e}")
     
-    # Calculate total files
-    total_files = sum(extensions.values())
+    # Convert bytes to MB
+    for ext in extensions:
+        extensions[ext]['size'] = round(extensions[ext]['size'] / (1024 ** 2), 2)
+    
+    # Calculate total matching files
+    total_files = sum(ext['count'] for ext in extensions.values())
+    
+    print(f"   [OK] Found:  {total_files} matching files")
     
     # Avoid division by zero
     if total_files == 0:
-        # Set default values for demo
-        extensions = {'.txt': 10, '.py': 5, '.pdf': 3, '.jpg': 2}
+        print("   [WARN] No matching files found. Using demo values.")
+        extensions = {
+            '.txt': {'count': 10, 'size': 0.5},
+            '.py': {'count': 5, 'size': 0.2},
+            '.pdf': {'count': 3, 'size':  1.5},
+            '.jpg':  {'count': 2, 'size': 0.8}
+        }
         total_files = 20
-        print("   [WARN] No matching files found.  Using demo values.")
     
     # Calculate percentages
-    txt_percent = round((extensions['.txt'] / total_files) * 100, 1)
-    py_percent = round((extensions['.py'] / total_files) * 100, 1)
-    pdf_percent = round((extensions['.pdf'] / total_files) * 100, 1)
-    jpg_percent = round((extensions['.jpg'] / total_files) * 100, 1)
+    txt_percent = round((extensions['.txt']['count'] / total_files) * 100, 1)
+    py_percent = round((extensions['.py']['count'] / total_files) * 100, 1)
+    pdf_percent = round((extensions['.pdf']['count'] / total_files) * 100, 1)
+    jpg_percent = round((extensions['.jpg']['count'] / total_files) * 100, 1)
     
     return {
         'analyzed_folder': str(dir_path.absolute()),
-        'txt_count': str(extensions['.txt']),
+        'txt_count': str(extensions['.txt']['count']),
+        'txt_size': str(extensions['.txt']['size']),
         'txt_percent': str(txt_percent),
-        'py_count': str(extensions['.py']),
+        'py_count': str(extensions['.py']['count']),
+        'py_size':  str(extensions['.py']['size']),
         'py_percent': str(py_percent),
-        'pdf_count':  str(extensions['.pdf']),
-        'pdf_percent': str(pdf_percent),
-        'jpg_count': str(extensions['.jpg']),
+        'pdf_count': str(extensions['.pdf']['count']),
+        'pdf_size': str(extensions['.pdf']['size']),
+        'pdf_percent':  str(pdf_percent),
+        'jpg_count': str(extensions['.jpg']['count']),
+        'jpg_size': str(extensions['.jpg']['size']),
         'jpg_percent': str(jpg_percent),
-        'total_files':  str(total_files)
+        'total_files': str(total_files)
     }
     
 def save_to_json(data):
@@ -315,6 +370,10 @@ def main():
     print("[>>] Collecting system info...")
     data.update(get_system_info())
     
+    # Collect load average
+    print("[>>] Collecting load average...")
+    data.update(get_load_average())
+    
     # Collect CPU information
     print("[>>] Collecting CPU info...")
     data.update(get_cpu_info())
@@ -329,7 +388,7 @@ def main():
     
     # Collect process information
     print("[>>] Collecting process info...")
-    data.update(get_top_processes())
+    data.update(get_processes())
     
     # Analyze files
     print("[>>] Analyzing files...")
@@ -354,8 +413,8 @@ def main():
     
     print("\n" + "=" * 60)
     print("[OK] Done! Open index.html in your browser to view the dashboard.")
-    print(f"[>>] HTML file:  {os.path.abspath('index.html')}")
-    print(f"[>>] JSON file: {os.path. abspath('system_data.json')}")
+    print(f"[>>] HTML file: {os.path.abspath('index.html')}")
+    print(f"[>>] JSON file: {os.path.abspath('system_data.json')}")
     print("=" * 60 + "\n")
 
 # Entry point

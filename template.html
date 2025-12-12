@@ -118,6 +118,18 @@
                         <span class="info-label">Connected Users:</span>
                         <span class="info-value">{{ user_count }}</span>
                     </div>
+                    <div class="info-item">
+                        <span class="info-label">Load Average (1 min):</span>
+                        <span class="info-value">{{ load_1min }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Load Average (5 min):</span>
+                        <span class="info-value">{{ load_5min }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Load Average (15 min):</span>
+                        <span class="info-value">{{ load_15min }}</span>
+                    </div>
                 </div>
             </section>
 
@@ -269,6 +281,7 @@
                         <div class="file-details">
                             <h4>.txt files</h4>
                             <p class="file-count">{{ txt_count }} files</p>
+                            <p class="file-size"><i class="fa-solid fa-hard-drive"></i> {{ txt_size }} MB</p>
                             <div class="file-bar">
                                 <div class="file-bar-fill" data-width="{{ txt_percent }}"></div>
                             </div>
@@ -281,6 +294,7 @@
                         <div class="file-details">
                             <h4>.py files</h4>
                             <p class="file-count">{{ py_count }} files</p>
+                            <p class="file-size"><i class="fa-solid fa-hard-drive"></i> {{ py_size }} MB</p>
                             <div class="file-bar">
                                 <div class="file-bar-fill" data-width="{{ py_percent }}"></div>
                             </div>
@@ -293,6 +307,7 @@
                         <div class="file-details">
                             <h4>.pdf files</h4>
                             <p class="file-count">{{ pdf_count }} files</p>
+                            <p class="file-size"><i class="fa-solid fa-hard-drive"></i> {{ pdf_size }} MB</p>
                             <div class="file-bar">
                                 <div class="file-bar-fill" data-width="{{ pdf_percent }}"></div>
                             </div>
@@ -305,6 +320,7 @@
                         <div class="file-details">
                             <h4>.jpg files</h4>
                             <p class="file-count">{{ jpg_count }} files</p>
+                            <p class="file-size"><i class="fa-solid fa-hard-drive"></i> {{ jpg_size }} MB</p>
                             <div class="file-bar">
                                 <div class="file-bar-fill" data-width="{{ jpg_percent }}"></div>
                             </div>

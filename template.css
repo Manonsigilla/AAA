@@ -873,6 +873,19 @@ body {
     margin-bottom: var(--spacing-xs);
 }
 
+.file-size {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.file-size i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
 .file-bar {
     width: 100%;
     height: 6px;
@@ -1217,7 +1230,7 @@ RESPONSIVE DESIGN
     }
     
     .show-less-btn {
-        top: 90px;
+        top: 150px;
     }
         
     .process-preview {
