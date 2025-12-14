@@ -17,7 +17,7 @@ Outil de monitoring système avec dashboard web qui affiche en temps réel les s
 - ✅ **Mémoire** : RAM totale/utilisée/pourcentage avec barres de progression visuelles
 - ✅ **Réseau** : Adresse IP principale
 - ✅ **Processus** : Top 3 des processus les plus gourmands en ressources
-- ✅ **Fichiers** : Analyse et statistiques sur les types de fichiers (. txt, .py, .pdf, .jpg)
+- ✅ **Fichiers** : Analyse et statistiques sur les types de fichiers (.txt, .py, .pdf, .jpg)
 
 ### Interface web moderne :
 - 🎨 Design moderne avec sidebar navigation
@@ -128,9 +128,9 @@ Challenge-AAA/
 ├── template.css           ← Feuille de style
 ├── index.html             ← HTML généré (créé après exécution)
 ├── screenshots/           ← Captures d'écran
-│   ├── terminal. png
+│   ├── terminal.png
 │   └── dashboard.png
-└── . gitignore             ← Fichiers à ignorer par Git
+└── .gitignore             ← Fichiers à ignorer par Git
 ```
 
 ## 🎨 Personnalisation
@@ -157,7 +157,7 @@ Dans `template.css`, modifiez les variables CSS :
 
 ## 📊 Captures d'écran
 
-*Les captures d'écran seront ajoutées prochainement.. .*
+*Les captures d'écran seront ajoutées prochainement...*
 
 ## 🔧 Difficultés rencontrées
 
