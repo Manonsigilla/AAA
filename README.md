@@ -68,7 +68,7 @@ Le projet combine trois compétences essentielles :
 ### 1. Cloner le repository
 
 ```bash
-git clone https://github.com/Manonsigilla/AAA. git
+git clone https://github.com/Manonsigilla/AAA.git
 cd AAA
 ```
 
@@ -178,8 +178,8 @@ AAA/
 ├── 📄 index.html                 # HTML généré (créé après exécution)
 ├── 📊 system_data.json           # Données système en JSON
 ├── 🖼️ assets/                    # Ressources (images, icônes)
-├── 🚫 . gitignore                 # Fichiers ignorés par Git
-└── ⚙️ . hintrc                    # Configuration Webhint
+├── 🚫 .gitignore                 # Fichiers ignorés par Git
+└── ⚙️ .hintrc                    # Configuration Webhint
 ```
 
 ## 🎨 Personnalisation
@@ -213,7 +213,7 @@ Dans `template.css`, modifiez les variables CSS :
 Dans `christmas-theme.css` :
 
 ```css
-:root. christmas-theme {
+:root.christmas-theme {
     --christmas-red: #c41e3a;
     --christmas-green: #2d5f3f;
     --christmas-gold:  #e8b86d;
