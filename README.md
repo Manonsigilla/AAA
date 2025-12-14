@@ -1,54 +1,84 @@
-# Challenge Triple A - Dashboard de Monitoring
+# 🎄 Challenge Triple A - Dashboard de Monitoring Système
+
+<div align="center">
+
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+**Dashboard de monitoring système en temps réel avec interface web moderne et thème de Noël** 🎅
+
+[Fonctionnalités](#-fonctionnalités) • [Installation](#-installation) • [Utilisation](#-utilisation) • [Structure](#-structure-du-projet)
+
+</div>
+
+---
 
 ## 📋 Description
 
-Outil de monitoring système avec dashboard web qui affiche en temps réel les statistiques d'une machine virtuelle Linux (Ubuntu).
+**Challenge Triple A** est un outil de monitoring système qui collecte et affiche en temps réel les statistiques d'une machine (Linux/Windows) via une interface web élégante et interactive.
 
-**Challenge Triple A** combine trois compétences :
-- **Administration** : Gestion d'une machine virtuelle Linux
-- **Algorithmique** : Développement Python pour la collecte de données système
-- **Affichage** : Création d'une interface web avec HTML5/CSS3
+Le projet combine trois compétences essentielles :
+- **🔧 Administration** : Gestion et monitoring système
+- **🧮 Algorithmique** : Collecte de données avec Python
+- **🎨 Affichage** : Interface web moderne et responsive
 
-## 🎯 Fonctionnalités
+## ✨ Fonctionnalités
 
-### Informations collectées : 
-- ✅ **Système** :  Nom de la machine, système d'exploitation, uptime, nombre d'utilisateurs connectés
-- ✅ **CPU** : Nombre de cœurs, fréquence, pourcentage d'utilisation
-- ✅ **Mémoire** : RAM totale/utilisée/pourcentage avec barres de progression visuelles
-- ✅ **Réseau** : Adresse IP principale
-- ✅ **Processus** : Top 3 des processus les plus gourmands en ressources
-- ✅ **Fichiers** : Analyse et statistiques sur les types de fichiers (.txt, .py, .pdf, .jpg)
+### 📊 Informations Système Collectées
 
-### Interface web moderne :
-- 🎨 Design moderne avec sidebar navigation
-- 📊 Visualisations avec gauges circulaires et barres de progression
-- 🌓 Thème sombre avec couleurs cyan/teal
-- 📱 Interface responsive
+| Catégorie | Données |
+|-----------|---------|
+| **Système** | Nom machine, OS, uptime, utilisateurs connectés |
+| **CPU** | Nombre de cœurs, fréquence, utilisation globale et par cœur |
+| **Mémoire** | RAM totale/utilisée/disponible avec visualisation |
+| **Réseau** | Adresse IP principale |
+| **Processus** | Top 3 + liste complète des processus par utilisation |
+| **Fichiers** | Analyse par type (`.txt`, `.py`, `.pdf`, `.jpg`, etc.) |
+| **Load Average** | Charge système sur 1, 5 et 15 minutes (Linux) |
+
+### 🎨 Interface Web Moderne
+
+- ✅ **Design responsive** adapté à tous les écrans
+- ✅ **Sidebar navigation** avec navigation fluide
+- ✅ **Thème sombre** cyan/teal par défaut
+- ✅ **Thème de Noël** 🎄 avec animation de flocons de neige
+- ✅ **Horloge temps réel** mise à jour en direct
+- ✅ **Visualisations** :  gauges circulaires, barres de progression
+- ✅ **Animations** : transitions fluides et effets visuels
+- ✅ **Export JSON** des données collectées
+
+### 🎅 Thème de Noël
+
+- 🎄 Palette de couleurs festives (rouge, vert, or)
+- ❄️ Animation de flocons de neige
+- 🌟 Effets de glow et transitions spéciales
+- 🔄 Basculement thème en un clic
 
 ## 🛠️ Prérequis
 
-- **Python** 3.8 ou supérieur
+- **Python** 3.8+ 
 - **Module Python** :  `psutil`
-- **Système d'exploitation** : Ubuntu 22.04 LTS (ou version plus récente) / Windows 10+
-- **Navigateur web** : Firefox, Chrome, Edge ou équivalent
+- **Système d'exploitation** : Ubuntu 22.04+ / Windows 10+
+- **Navigateur web** : Firefox, Chrome, Edge ou Safari
 
 ## 📥 Installation
 
 ### 1. Cloner le repository
 
 ```bash
-git clone https://github.com/votre-nom/Challenge-AAA.git
-cd Challenge-AAA
+git clone https://github.com/Manonsigilla/AAA. git
+cd AAA
 ```
 
-### 2. Installer les dépendances
+### 2. Installer les dépendances Python
 
 **Sur Ubuntu/Linux :**
 
 ```bash
 sudo apt update
-sudo apt install python3-pip
-sudo apt install python3-psutil
+sudo apt install python3-pip python3-psutil
 ```
 
 Ou avec pip :
@@ -77,36 +107,45 @@ conda install psutil
 python3 monitor.py
 ```
 
-**Sortie attendue :**
+**Sortie console :**
 
 ```
-🖥️  Challenge Triple A - System Monitor
-==================================================
-Collecting system information... 
-📊 Collecting system info... 
-⚙️  Collecting CPU info... 
-🧠 Collecting memory info... 
-🌐 Collecting network info... 
-📈 Collecting process info...
-   ⏳ Measuring CPU usage (this takes a moment)...
-📁 Analyzing files... 
-🎨 Generating HTML dashboard...
-✅ index.html generated successfully!
-==================================================
-✨ Done! Open index.html in your browser to view the dashboard. 
+============================================================
+  Challenge Triple A - System Monitor
+============================================================
+[>>] Collecting system information... 
+
+[>>] Collecting system info...
+[>>] Collecting load average...
+[>>] Collecting CPU info...
+[>>] Collecting memory info...
+[>>] Collecting network info...
+[>>] Collecting process info...
+   [INFO] Measuring CPU usage (this takes a moment)...
+[>>] Analyzing files...
+   [>>] Scanning:  /home/user/Documents
+   [OK] Total files scanned: 1523
+   [OK] Found:  342 matching files
+
+[>>] Saving data to JSON... 
+[OK] system_data.json generated successfully! 
+[>>] Generating HTML dashboard...
+[OK] index.html generated successfully! 
+
+============================================================
+[OK] Done! Open index.html in your browser to view the dashboard.
+[>>] HTML file:  /path/to/AAA/index.html
+[>>] JSON file: /path/to/AAA/system_data.json
+============================================================
 ```
 
-### 2. Ouvrir le dashboard dans le navigateur
+### 2. Ouvrir le dashboard
 
 **Sur Linux :**
 
 ```bash
 firefox index.html
-```
-
-ou
-
-```bash
+# ou
 xdg-open index.html
 ```
 
@@ -116,95 +155,139 @@ xdg-open index.html
 start index.html
 ```
 
-Le fichier `index.html` est généré automatiquement avec les données système collectées en temps réel.
+**Sur macOS :**
 
-## 📂 Structure du projet
+```bash
+open index.html
+```
+
+### 3. Basculer vers le thème de Noël 🎄
+
+Cliquez sur le bouton flottant en bas à droite pour activer/désactiver le thème de Noël avec ses animations de flocons ! 
+
+## 📂 Structure du Projet
 
 ```
-Challenge-AAA/
-├── README.md              ← Documentation du projet
-├── monitor.py             ← Script Python principal
-├── template.html          ← Template HTML avec variables
-├── template.css           ← Feuille de style
-├── index.html             ← HTML généré (créé après exécution)
-├── screenshots/           ← Captures d'écran
-│   ├── terminal.png
-│   └── dashboard.png
-└── .gitignore             ← Fichiers à ignorer par Git
+AAA/
+├── 📄 README.md                  # Documentation du projet
+├── 🐍 monitor.py                 # Script Python principal de collecte
+├── 🌐 template.html              # Template HTML avec variables
+├── 🎨 template.css               # Feuille de style principale
+├── 🎄 christmas-theme.css        # Thème de Noël
+├── ⚡ dashboard.js               # JavaScript interactif
+├── 📄 index.html                 # HTML généré (créé après exécution)
+├── 📊 system_data.json           # Données système en JSON
+├── 🖼️ assets/                    # Ressources (images, icônes)
+├── 🚫 . gitignore                 # Fichiers ignorés par Git
+└── ⚙️ . hintrc                    # Configuration Webhint
 ```
 
 ## 🎨 Personnalisation
 
 ### Changer le dossier analysé
 
-Dans `monitor.py`, ligne ~273, modifiez : 
+Dans `monitor.py`, lignes 395-402 :
 
 ```python
-analyze_directory = "~/Documents"  # Changez ce chemin
+# Windows
+analyze_directory = os.path.join(os.path.expanduser("~"), "Documents")
+
+# Linux/macOS
+analyze_directory = os.path.expanduser("~/Documents")
 ```
 
-### Modifier les couleurs (thème)
+### Modifier les couleurs du thème par défaut
 
 Dans `template.css`, modifiez les variables CSS :
 
 ```css
 :root {
-    --primary-color: #00d4aa;     /* Couleur principale */
-    --secondary-color:  #0ea5e9;   /* Couleur secondaire */
-    --bg-primary:  #0a0e27;        /* Fond principal */
+    --primary-color: #00d4aa;      /* Cyan principal */
+    --secondary-color:  #0ea5e9;     /* Bleu secondaire */
+    --bg-primary: #0a0e27;          /* Fond sombre */
 }
 ```
 
-## 📊 Captures d'écran
+### Personnaliser le thème de Noël
 
-*Les captures d'écran seront ajoutées prochainement...*
+Dans `christmas-theme.css` :
 
-## 🔧 Difficultés rencontrées
+```css
+:root. christmas-theme {
+    --christmas-red: #c41e3a;
+    --christmas-green: #2d5f3f;
+    --christmas-gold:  #e8b86d;
+}
+```
 
-- Configuration de la machine virtuelle avec les bonnes ressources
-- Gestion des permissions pour l'accès aux informations système
-- Mesure précise du CPU sur Windows (processus "System Idle")
-- Templating HTML/Python avec remplacement de variables
-- Adaptation cross-platform (Windows/Linux)
+## 🔧 Architecture Technique
 
-## 🚀 Améliorations possibles
+### Backend (Python)
 
-### Fonctionnalités : 
-- [ ] Rafraîchissement automatique toutes les 30 secondes
-- [ ] Code couleur pour les niveaux d'utilisation (vert/orange/rouge)
-- [ ] Analyse système avancée (load average)
-- [ ] Pourcentage d'utilisation par cœur CPU
-- [ ] Analyse récursive complète des fichiers
-- [ ] Calcul de l'espace disque par type de fichier
-- [ ] Graphiques d'historique des performances
-- [ ] Export des données en JSON/CSV
-- [ ] Alertes par email si seuils dépassés
+- **`monitor.py`** : Script principal avec 8 fonctions de collecte
+  - `get_system_info()` : Informations système de base
+  - `get_cpu_info()` : Statistiques CPU détaillées
+  - `get_memory_info()` : Utilisation RAM
+  - `get_network_info()` : Configuration réseau
+  - `get_load_average()` : Charge système (Linux)
+  - `get_processes()` : Liste et classement des processus
+  - `analyze_files()` : Analyse récursive des fichiers
+  - `generate_html()` : Génération du dashboard
+
+### Frontend
+
+- **HTML5** : Structure sémantique avec template variables
+- **CSS3** :  Animations, grids, flexbox, variables CSS
+- **Vanilla JavaScript** : Interactivité sans framework
+  - Horloge temps réel
+  - Animations des barres de progression
+  - Navigation fluide
+  - Basculement de thème
+
+## 🚀 Améliorations Possibles
+
+### Fonctionnalités
+
+- [ ] Auto-refresh toutes les 30 secondes
+- [ ] Alertes colorées (vert/orange/rouge) selon seuils
+- [ ] Graphiques historiques avec Chart.js
+- [ ] Export CSV des statistiques
 - [ ] Dashboard multi-machines
+- [ ] API REST pour accès distant
+- [ ] Mode serveur avec Flask/FastAPI
+- [ ] Notifications par email si seuils dépassés
 
-### Interface :
-- [ ] Thème de Noël (rouge/vert/or)
-- [ ] Mode clair/sombre
-- [ ] Graphiques interactifs avec Chart.js
-- [ ] Animation des transitions
+### Interface
+
+- [ ] Mode clair/sombre additionnel
+- [ ] Plus de thèmes saisonniers
+- [ ] Graphiques interactifs (hover, zoom)
+- [ ] Page de configuration
+- [ ] Mode plein écran
 
 ## 👥 Auteurs
 
-- **[Manon Sigaud]** - [GitHub](https://github.com/Manonsigilla)
-- **[Alex Taylor]** - [GitHub](https://github.com/ALex-taYlor-os)
-- **[Angie Valencia]** - [GitHub](https://github.com/angie-valencia)
+Projet réalisé en équipe par : 
+
+| Nom | GitHub |
+|-----|--------|
+| **Manon Sigaud** | [@Manonsigilla](https://github.com/Manonsigilla) |
+| **Alex Taylor** | [@ALex-taYlor-os](https://github.com/ALex-taYlor-os) |
+| **Angie Valencia** | [@angie-valencia](https://github.com/angie-valencia) |
 
 ## 🎓 Contexte
 
-Projet réalisé dans le cadre de la formation **[La Plateforme Marseille - Bachelor IT]**.
+Projet réalisé dans le cadre de la formation **Bachelor IT - La Plateforme Marseille**. 
 
 **Date** : Décembre 2025
 
 **Compétences développées** :
-- Virtualisation (VMware Workstation Pro 17)
-- Administration système Linux (Ubuntu)
-- Développement Python
-- Web design (HTML5/CSS3)
-- Gestion de version (Git/GitHub)
+- ✅ Virtualisation (VMware Workstation Pro 17)
+- ✅ Administration système (Ubuntu 22.04 LTS)
+- ✅ Développement Python (psutil, JSON)
+- ✅ Web design moderne (HTML5/CSS3/JavaScript)
+- ✅ Gestion de version (Git/GitHub)
+- ✅ Documentation technique
 
 ## 📄 Licence
 
@@ -212,4 +295,10 @@ Ce projet est réalisé dans un cadre éducatif.
 
 ---
 
-**© 2025 Challenge Triple A Team** - Made with ❤️ and ☕
+<div align="center">
+
+**© 2025 Challenge Triple A Team** 
+
+*Made with ❤️, ☕ and ❄️*
+
+</div>
